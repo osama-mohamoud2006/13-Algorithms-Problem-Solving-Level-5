@@ -119,7 +119,7 @@ public:
         if (Head == nullptr)
             return;
 
-        if (Head->Next == nullptr)
+        if (Head->Next == nullptr) // the real last element 
         {
             delete Head;
             Head = nullptr;
