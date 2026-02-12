@@ -116,17 +116,24 @@ void TestEmptyList()
 
 int main()
 {
-    cout << "\n######## DOUBLY LINKED LIST TEST SUITE ########\n\n";
+    clsDbLinkedList<int> D;
+    D.InsertAtTheBeginning(10); //2 
+    D.InsertAtTheBeginning(20); //1
+       
+    clsDbLinkedList<int>::Node *N = D.Find(10);
+    D.InsertAfter(N, 63);
+    D.PrintList(); 
+    // cout << "\n######## DOUBLY LINKED LIST TEST SUITE ########\n\n";
 
-    TestEmptyList();
-    TestInsertAtBeginning();
-    TestInsertAtEnd();
-    TestFind();
-    TestInsertAfter();
-    TestDeleteFirstNode();
-    TestDeleteLastNode();
-    TestDeleteNode();
+    // TestEmptyList();
+    // TestInsertAtBeginning();
+    // TestInsertAtEnd();
+    // TestFind();
+    // TestInsertAfter();
+    // TestDeleteFirstNode();
+    // TestDeleteLastNode();
+    // TestDeleteNode();
 
-    cout << "######## ALL TESTS COMPLETED ########\n";
-    return 0;
+    // cout << "######## ALL TESTS COMPLETED ########\n";
+    // return 0;
 };

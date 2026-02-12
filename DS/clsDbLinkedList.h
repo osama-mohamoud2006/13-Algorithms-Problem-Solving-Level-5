@@ -47,19 +47,15 @@ public:
 
     void InsertAtTheBeginning(T Value) override // Insert At The Beginning
     {
-        typename InterfaceDbLinkedList<T>::Node *NNode = new typename InterfaceDbLinkedList<T>::Node(Value); // create new node
+        Node *NNode = new Node(Value); // create new node
 
         NNode->Prev = nullptr; // as it will be the first node
+        NNode->Next = Head;
 
-        if (this->Head != nullptr) // there is next node
+        if (this->Head != nullptr) // there is node
         {
-            NNode->Next = Head;
-            NNode->Next->Prev = NNode;
-            this->Head = NNode;
-            return;
+            Head->Prev = NNode;
         };
-
-        NNode->Next = nullptr;
 
         this->Head = NNode;
     };
@@ -78,7 +74,6 @@ public:
             std::cout << Temp->Value << std::endl;
             Temp = Temp->Next; // move to the next node
         };
-        Temp = nullptr;
     };
 
     // return the address of the found node
@@ -92,7 +87,6 @@ public:
             Temp = Temp->Next; // move to the next node
         };
 
-        Temp = nullptr;
         return nullptr;
     };
 
@@ -103,8 +97,6 @@ public:
 
         if (Head == nullptr)
         {
-            NNode->Prev = nullptr;
-            NNode->Next = nullptr;
             Head = NNode;
             return;
         };
@@ -119,8 +111,7 @@ public:
         // The Last Element
         NNode->Prev = temp;
         temp->Next = NNode;
-        NNode->Next = nullptr;
-        temp = nullptr;
+       
     };
 
     void DeleteTheLastNode() override
@@ -197,7 +188,7 @@ public:
             }
         };
 
-         delete TheNodeToDelete;
+        delete TheNodeToDelete;
     };
 
     void InsertAfter(Node *TheNodeYouWantToInsertAfter, T Value) override
@@ -207,25 +198,25 @@ public:
 
         Node *NNode = new Node(Value);
 
-        if (TheNodeYouWantToInsertAfter == this->Head)
+        if (TheNodeYouWantToInsertAfter == this->Head) // you want to insert after the Head
         {
             NNode->Next = Head->Next;
             NNode->Prev = Head;
+
+            Head->Next->Prev = NNode;
             Head->Next = NNode;
             return;
         };
 
-        if (TheNodeYouWantToInsertAfter->Next != nullptr)
-        {
-            NNode->Next = TheNodeYouWantToInsertAfter->Next;
-            TheNodeYouWantToInsertAfter->Next = NNode;
-        };
+        NNode->Next = TheNodeYouWantToInsertAfter->Next;
+        NNode->Prev = TheNodeYouWantToInsertAfter->Prev;
 
-        if (TheNodeYouWantToInsertAfter->Prev != nullptr)
+        if (TheNodeYouWantToInsertAfter->Next != nullptr) // The Next Node Is Here 
         {
-            NNode->Prev = TheNodeYouWantToInsertAfter;
             TheNodeYouWantToInsertAfter->Next->Prev = NNode;
         };
+
+        TheNodeYouWantToInsertAfter->Next = NNode;
     };
 
     ~clsDbLinkedList() // Destructor
