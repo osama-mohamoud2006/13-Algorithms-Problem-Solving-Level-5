@@ -111,7 +111,6 @@ public:
         // The Last Element
         NNode->Prev = temp;
         temp->Next = NNode;
-       
     };
 
     void DeleteTheLastNode() override
@@ -119,7 +118,7 @@ public:
         if (Head == nullptr)
             return;
 
-        if (Head->Next == nullptr) // the real last element 
+        if (Head->Next == nullptr) // the real last element
         {
             delete Head;
             Head = nullptr;
@@ -136,10 +135,10 @@ public:
             };
 
             // The Last Node
-
-            Current->Next->Prev = nullptr;
-            delete Current->Next;
-            Current->Next = nullptr;
+            Node *Temp = Current->Next;
+            Temp->Prev->Next = nullptr;
+            Temp->Prev = nullptr;
+            delete Temp;
         };
     };
 
@@ -175,18 +174,15 @@ public:
             Head = Head->Next;
         }
 
-        else
+        if (TheNodeToDelete->Next != nullptr)
         {
-            if (TheNodeToDelete->Next != nullptr)
-            {
-                TheNodeToDelete->Next->Prev = TheNodeToDelete->Prev;
-            }
+            TheNodeToDelete->Next->Prev = TheNodeToDelete->Prev;
+        }
 
-            if (TheNodeToDelete->Prev != nullptr)
-            {
-                TheNodeToDelete->Prev->Next = TheNodeToDelete->Next;
-            }
-        };
+        if (TheNodeToDelete->Prev != nullptr)
+        {
+            TheNodeToDelete->Prev->Next = TheNodeToDelete->Next;
+        }
 
         delete TheNodeToDelete;
     };
@@ -198,20 +194,10 @@ public:
 
         Node *NNode = new Node(Value);
 
-        if (TheNodeYouWantToInsertAfter == this->Head) // you want to insert after the Head
-        {
-            NNode->Next = Head->Next;
-            NNode->Prev = Head;
-
-            Head->Next->Prev = NNode;
-            Head->Next = NNode;
-            return;
-        };
-
         NNode->Next = TheNodeYouWantToInsertAfter->Next;
-        NNode->Prev = TheNodeYouWantToInsertAfter->Prev;
+        NNode->Prev = TheNodeYouWantToInsertAfter;
 
-        if (TheNodeYouWantToInsertAfter->Next != nullptr) // The Next Node Is Here 
+        if (TheNodeYouWantToInsertAfter->Next != nullptr) // The Next Node Is Here
         {
             TheNodeYouWantToInsertAfter->Next->Prev = NNode;
         };
@@ -221,10 +207,10 @@ public:
 
     ~clsDbLinkedList() // Destructor
     {
-        std::cout << "\nDestructor\n";
         while (Head != nullptr)
         {
             DeleteTheLastNode();
         };
     };
+
 };
