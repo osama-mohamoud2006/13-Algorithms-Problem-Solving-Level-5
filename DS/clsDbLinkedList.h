@@ -27,7 +27,7 @@ public: // i put Node Here Because Of The pure virtual Methods That Return Node(
     virtual void DeleteTheLastNode() = 0;
     virtual void DeleteTheFirstNode() = 0;
     virtual void DeleteNode(Node *TheNodeToDelete) = 0;
-    virtual void InsertAfter(Node * TheNodeYouWantToInsertAfter) =0 ;
+    virtual void InsertAfter(Node *TheNodeYouWantToInsertAfter, T Value) = 0;
 };
 
 template <class T>
@@ -189,9 +189,33 @@ public:
         };
     };
 
-
-    void InsertAfter(Node * TheNodeYouWantToInsertAfterNode * TheNodeYouWantToInsertAfter)override
+    void InsertAfter(Node *TheNodeYouWantToInsertAfter, T Value) override
     {
+        if (this->Head == nullptr || TheNodeYouWantToInsertAfter == nullptr)
+            return;
+
+        Node *NNode = new Node(Value);
+
+        if (TheNodeYouWantToInsertAfter == this->Head)
+        {
+            NNode->Next = Head->Next;
+            NNode->Prev = Head;
+            Head->Next = NNode; 
+            return;
+        };
+
+        if (TheNodeYouWantToInsertAfter->Next != nullptr)
+        {
+            NNode->Next = TheNodeYouWantToInsertAfter->Next;
+            TheNodeYouWantToInsertAfter->Next = NNode;
+        };
+
+        if (TheNodeYouWantToInsertAfter->Prev != nullptr)
+        {
+            NNode->Prev = TheNodeYouWantToInsertAfter;
+            TheNodeYouWantToInsertAfter->Next->Prev = NNode;
+        };
+
         
     };
 
