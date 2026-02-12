@@ -15,7 +15,12 @@ int main()
     Db1.InsertAtTheEnd(30);
     Db1.InsertAtTheEnd(40);
     Db1.InsertAtTheEnd(50);
-    
+
+    Db1.DeleteTheLastNode();
+    Db1.DeleteTheLastNode();
+    Db1.DeleteTheLastNode();
+    Db1.DeleteTheLastNode();
+
     Db1.PrintList();
 
     clsDbLinkedList<int>::Node *N1 = Db1.Find(20);

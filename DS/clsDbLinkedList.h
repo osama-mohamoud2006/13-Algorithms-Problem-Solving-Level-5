@@ -24,7 +24,7 @@ public: // i put Node Here Because Of The pure virtual Methods That Return Node(
     virtual void PrintList() = 0;
     virtual Node *Find(T value) = 0; // Find by Value
     virtual void InsertAtTheEnd(T Value) = 0;
-    virtual DeleteTheLastNode() = 0;
+    virtual void DeleteTheLastNode() = 0;
 };
 
 template <class T>
@@ -63,7 +63,12 @@ public:
 
     void PrintList() override
     {
-        typename InterfaceDbLinkedList<T>::Node *Temp = this->Head;
+        if (Head == nullptr)
+        {
+            std::cout << "NULL\n";
+            return;
+        }
+        Node *Temp = this->Head;
 
         while (Temp != nullptr)
         {
@@ -110,4 +115,33 @@ public:
         temp->Next = NNode;
         NNode->Next = nullptr;
     };
+
+    void DeleteTheLastNode() override
+    {
+        if (Head == nullptr)
+            return;
+
+        if (Head->Next == nullptr)
+        {
+            delete Head;
+            Head = nullptr;
+            return;
+        }
+
+        else
+        {
+            // Traverse to get the last node
+            Node *Current = this->Head;
+            while (Current->Next->Next != nullptr)
+            {
+                Current = Current->Next; // move to the next element
+            };
+
+            // The Last Node
+
+            Current->Next->Prev = nullptr;
+            delete Current->Next;
+            Current->Next = nullptr;
+        };
+    }
 };
