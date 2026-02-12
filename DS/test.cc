@@ -16,9 +16,7 @@ int main()
     Db1.InsertAtTheEnd(40);
     Db1.InsertAtTheEnd(50);
 
-    Db1.DeleteTheLastNode();
-    Db1.DeleteTheLastNode();
-    Db1.DeleteTheLastNode();
+    Db1.DeleteTheFirstNode();
     Db1.DeleteTheLastNode();
 
     Db1.PrintList();
@@ -31,4 +29,4 @@ int main()
         cout << "\nDidn't Find\n";
 
     cout << N1->Value << endl;
-}
+};
