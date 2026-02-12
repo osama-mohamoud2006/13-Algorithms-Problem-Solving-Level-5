@@ -26,6 +26,7 @@ public: // i put Node Here Because Of The pure virtual Methods That Return Node(
     virtual void InsertAtTheEnd(T Value) = 0;
     virtual void DeleteTheLastNode() = 0;
     virtual void DeleteTheFirstNode() = 0;
+    virtual void DeleteNode(Node *TheNodeToDelete) = 0;
 };
 
 template <class T>
@@ -163,13 +164,32 @@ public:
         if (this->Head->Next != nullptr)
         {
             Head = Head->Next;
-            delete Head->Prev ;
+            delete Head->Prev;
             Head->Prev = nullptr;
         };
     };
 
+    void DeleteNode(Node *TheNodeToDelete) override
+    {
+        if (TheNodeToDelete == nullptr || this->Head == nullptr)
+            return;
 
-    
+        if (TheNodeToDelete == this->Head)
+        {
+            DeleteTheFirstNode();
+            return;
+        }
+
+        else
+        {
+            TheNodeToDelete->Next->Prev = TheNodeToDelete->Prev;
+            TheNodeToDelete->Prev->Next = TheNodeToDelete->Next;
+            delete TheNodeToDelete;
+        };
+    };
+
+
+
     ~clsDbLinkedList() // Destructor
     {
         std::cout << "\nDestructor\n";
@@ -178,7 +198,4 @@ public:
             DeleteTheLastNode();
         };
     };
-
-
-
 };

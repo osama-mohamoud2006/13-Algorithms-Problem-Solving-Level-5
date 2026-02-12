@@ -16,10 +16,10 @@ int main()
     //Db1.InsertAtTheEnd(40);
     //Db1.InsertAtTheEnd(50);
 
-    Db1.DeleteTheFirstNode();
-    Db1.DeleteTheLastNode();
+    //Db1.DeleteTheFirstNode();
+    //Db1.DeleteTheLastNode();
 
-    Db1.PrintList();
+   // Db1.PrintList();
 
     clsDbLinkedList<int>::Node *N1 = Db1.Find(20);
 
@@ -28,5 +28,11 @@ int main()
     else
         cout << "\nDidn't Find\n";
 
-    cout << N1->Value << endl;
+   // cout << N1->Value << endl;
+
+    Db1.DeleteNode(N1);
+
+        Db1.PrintList();
+  
+
 };
