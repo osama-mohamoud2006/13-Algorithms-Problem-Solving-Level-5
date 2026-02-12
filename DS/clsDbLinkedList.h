@@ -20,31 +20,30 @@ public: // i put Node Here Because Of The pure virtual Methods That Return Node(
         };
     };
 
-
     virtual void InsertAtTheBeginning(T Value) = 0;
     virtual void PrintList() = 0;
     virtual Node *Find(T value) = 0; // Find by Value
+    virtual void InsertAtTheEnd(T Value) = 0;
+    virtual DeleteTheLastNode() = 0;
 };
 
 template <class T>
 class clsDbLinkedList : public InterfaceDbLinkedList<T>
 {
-    using node = typename InterfaceDbLinkedList<T>::Node; // to avoid writing unnecessary syntax every time 
 
 private:
     typename InterfaceDbLinkedList<T>::Node *Head;
 
 public:
+    using Node = typename InterfaceDbLinkedList<T>::Node; // to avoid writing unnecessary syntax every time
+
     clsDbLinkedList()
     {
         this->Head = nullptr;
     };
 
-    // Insert At The Beginning
-
-    void InsertAtTheBeginning(T Value) override
+    void InsertAtTheBeginning(T Value) override // Insert At The Beginning
     {
-
         typename InterfaceDbLinkedList<T>::Node *NNode = new typename InterfaceDbLinkedList<T>::Node(Value); // create new node
 
         NNode->Prev = nullptr; // as it will be the first node
@@ -56,6 +55,7 @@ public:
             this->Head = NNode;
             return;
         };
+
         NNode->Next = nullptr;
 
         this->Head = NNode;
@@ -83,5 +83,31 @@ public:
             Temp = Temp->Next; // move to the next node
         };
         return nullptr;
+    };
+
+    void InsertAtTheEnd(T Value) override
+    {
+        // Create New Node
+        Node *NNode = new Node(Value);
+
+        if (Head == nullptr)
+        {
+            NNode->Prev = nullptr;
+            NNode->Next = nullptr;
+            Head = NNode;
+            return;
+        };
+
+        // Traverse Untill The last Node
+        Node *temp = this->Head;
+        while (temp->Next != nullptr)
+        {
+            temp = temp->Next;
+        };
+
+        // The Last Element
+        NNode->Prev = temp;
+        temp->Next = NNode;
+        NNode->Next = nullptr;
     };
 };
