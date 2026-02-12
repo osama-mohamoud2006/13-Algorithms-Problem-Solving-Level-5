@@ -27,6 +27,7 @@ public: // i put Node Here Because Of The pure virtual Methods That Return Node(
     virtual void DeleteTheLastNode() = 0;
     virtual void DeleteTheFirstNode() = 0;
     virtual void DeleteNode(Node *TheNodeToDelete) = 0;
+    virtual void InsertAfter(Node * TheNodeYouWantToInsertAfter) =0 ;
 };
 
 template <class T>
@@ -189,6 +190,10 @@ public:
     };
 
 
+    void InsertAfter(Node * TheNodeYouWantToInsertAfterNode * TheNodeYouWantToInsertAfter)override
+    {
+        
+    };
 
     ~clsDbLinkedList() // Destructor
     {
