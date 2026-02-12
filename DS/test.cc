@@ -13,8 +13,8 @@ int main()
     Db1.InsertAtTheEnd(10);
     Db1.InsertAtTheEnd(20);
     Db1.InsertAtTheEnd(30);
-    Db1.InsertAtTheEnd(40);
-    Db1.InsertAtTheEnd(50);
+    //Db1.InsertAtTheEnd(40);
+    //Db1.InsertAtTheEnd(50);
 
     Db1.DeleteTheFirstNode();
     Db1.DeleteTheLastNode();
