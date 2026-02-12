@@ -38,7 +38,7 @@ private:
     typename InterfaceDbLinkedList<T>::Node *Head;
 
 public:
-    using Node = typename InterfaceDbLinkedList<T>::Node; // to avoid writing unnecessary syntax every time
+    using Node = typename InterfaceDbLinkedList<T>::Node; // to avoid writing unnecessary syntax every time (i inherited it)
 
     clsDbLinkedList()
     {
@@ -77,19 +77,22 @@ public:
         {
             std::cout << Temp->Value << std::endl;
             Temp = Temp->Next; // move to the next node
-        }
+        };
+        Temp = nullptr;
     };
 
     // return the address of the found node
-    typename InterfaceDbLinkedList<T>::Node *Find(T Value) override
+    Node *Find(T Value) override
     {
-        typename InterfaceDbLinkedList<T>::Node *Temp = Head;
+        Node *Temp = Head;
         while (Temp != nullptr)
         {
             if (Temp->Value == Value)
                 return Temp;
             Temp = Temp->Next; // move to the next node
         };
+
+        Temp = nullptr;
         return nullptr;
     };
 
@@ -117,6 +120,7 @@ public:
         NNode->Prev = temp;
         temp->Next = NNode;
         NNode->Next = nullptr;
+        temp = nullptr;
     };
 
     void DeleteTheLastNode() override
@@ -177,16 +181,23 @@ public:
 
         if (TheNodeToDelete == this->Head)
         {
-            DeleteTheFirstNode();
-            return;
+            Head = Head->Next;
         }
 
         else
         {
-            TheNodeToDelete->Next->Prev = TheNodeToDelete->Prev;
-            TheNodeToDelete->Prev->Next = TheNodeToDelete->Next;
-            delete TheNodeToDelete;
+            if (TheNodeToDelete->Next != nullptr)
+            {
+                TheNodeToDelete->Next->Prev = TheNodeToDelete->Prev;
+            }
+
+            if (TheNodeToDelete->Prev != nullptr)
+            {
+                TheNodeToDelete->Prev->Next = TheNodeToDelete->Next;
+            }
         };
+
+         delete TheNodeToDelete;
     };
 
     void InsertAfter(Node *TheNodeYouWantToInsertAfter, T Value) override
@@ -200,7 +211,7 @@ public:
         {
             NNode->Next = Head->Next;
             NNode->Prev = Head;
-            Head->Next = NNode; 
+            Head->Next = NNode;
             return;
         };
 
@@ -215,8 +226,6 @@ public:
             NNode->Prev = TheNodeYouWantToInsertAfter;
             TheNodeYouWantToInsertAfter->Next->Prev = NNode;
         };
-
-        
     };
 
     ~clsDbLinkedList() // Destructor
