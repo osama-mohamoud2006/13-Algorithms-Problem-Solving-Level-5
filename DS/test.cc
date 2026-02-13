@@ -326,12 +326,27 @@ void TestComplexScenario2()
     cout << "Status: PASS\n\n";
 }
 
+
+
 int main()
 {
     clsDbLinkedList<short> D;
+
+    if (D.IsEmpty())
+        cout << "\nEmpty 1 Linked List!\n";
+    else
+        cout << "\nIsn't Empty!\n";
+
     D.InsertAtTheBeginning(10);
     D.InsertAtTheBeginning(20);
     D.InsertAtTheBeginning(30);
+
+    if (D.IsEmpty())
+        cout << "\nEmpty 2 Linked List!\n";
+    else
+        cout << "\nIsn't 2Empty!\n";
+
+
     cout << "\nThe Size1 is: " << D.Size() << "\n";
 
     D.InsertAtTheEnd(2);
@@ -342,13 +357,29 @@ int main()
     clsDbLinkedList<short>::Node *N = D.Find(10);
     D.InsertAfter(N, -800);
 
-      cout << "\nThe Size3 is: " << D.Size() << "\n";
+    cout << "\nThe Size3 is: " << D.Size() << "\n";
 
-      D.DeleteTheFirstNode();
-      D.DeleteTheLastNode();
-      D.DeleteNode(N); 
-   cout << "\nThe Size4 is: " << D.Size() << "\n";
-   
+    D.DeleteTheFirstNode();
+    D.DeleteTheLastNode();
+    D.DeleteNode(N);
+
+    cout << "\nThe Size4 is: " << D.Size() << "\n";
+
+    D.DeleteTheFirstNode();
+    D.DeleteTheLastNode();
+    D.DeleteTheFirstNode();
+    D.DeleteTheLastNode();
+    D.DeleteTheFirstNode();
+    D.DeleteTheLastNode();
+
+    
+    if (D.IsEmpty())
+        cout << "\nEmpty 2 Linked List!\n";
+    else
+        cout << "\nIsn't 2Empty!\n";
+        
+    cout << "\nThe Size5 is: " << D.Size() << "\n";
+
     // cout << "\n\n";
     // cout << "+---------------------------------------------------+\n";
     // cout << "|   DOUBLY LINKED LIST - COMPREHENSIVE TEST SUITE   |\n";

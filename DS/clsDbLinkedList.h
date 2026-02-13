@@ -33,17 +33,18 @@ public: // i put Node Here Because Of The pure virtual Methods That Return Node(
 template <class T>
 class clsDbLinkedList : public InterfaceDbLinkedList<T>
 {
-
-protected:
-    int _Size; // to track the num of elements in linked list 
-
-public:
+private:
     typename InterfaceDbLinkedList<T>::Node *Head;
 
+protected:
+    int _Size; // to track the num of elements in linked list
+
+public:
     using Node = typename InterfaceDbLinkedList<T>::Node; // to avoid writing unnecessary syntax every time (i inherited it)
 
     clsDbLinkedList()
     {
+       
         this->Head = nullptr;
         this->_Size = 0;
     };
@@ -220,6 +221,11 @@ public:
     int Size() const // O(1) Algorithm
     {
         return this->_Size;
+    };
+
+    bool IsEmpty() const
+    {
+        return (this->Head == nullptr && this->_Size == 0);
     };
 
     ~clsDbLinkedList() // Destructor
