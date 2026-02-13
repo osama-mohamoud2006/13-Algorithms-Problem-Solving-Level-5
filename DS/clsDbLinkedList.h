@@ -76,7 +76,7 @@ public:
 
         while (Temp != nullptr)
         {
-            std::cout << Temp->Value << std::endl;
+            std::cout << Temp->Value << " ";
             Temp = Temp->Next; // move to the next node
         };
     };
@@ -241,8 +241,18 @@ public:
         this->_Head = nullptr;
     };
 
+    void Reverse()
+    {
+        // Get The Last Node
+        while(_Head->Next !=nullptr)
+        {
+            this->_Head = _Head->Next ; // move to the next node 
+        };
+    }
+
     ~clsDbLinkedList() // Destructor
     {
         this->Clear();
     };
+
 };

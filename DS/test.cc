@@ -339,49 +339,48 @@ int main()
     D.InsertAtTheBeginning(20);
     D.InsertAtTheBeginning(30);
 
-    if (D.IsEmpty())
-        cout << "\nEmpty 2 Linked List!\n";
-    else
-        cout << "\nIsn't 2Empty!\n";
-
-    cout << "\nThe Size1 is: " << D.Size() << "\n";
-
     D.InsertAtTheEnd(2);
     D.InsertAtTheEnd(23);
     D.InsertAtTheEnd(34);
 
-    cout << "\nExecuting the Clear Method\n";
-    D.Clear();
+    cout << "\nBefore Reversing\n";
+    D.PrintList();
 
-    cout << "\nThe Size(After Clearing) is: " << D.Size() << "\n";
+       cout << "\nAfter Reversing\n";
+    D.Reverse();
 
-    clsDbLinkedList<short>::Node *N = D.Find(10);
-    D.InsertAfter(N, -800);
+   // cout << "\nExecuting the Clear Method\n";
+   // D.Clear();
+//
+   // cout << "\nThe Size(After Clearing) is: " << D.Size() << "\n";
 
-    cout << "\nThe Size3 is: " << D.Size() << "\n";
+    // clsDbLinkedList<short>::Node *N = D.Find(10);
+    // D.InsertAfter(N, -800);
 
-    D.DeleteTheFirstNode();
-    D.DeleteTheLastNode();
-    D.DeleteNode(N);
+    // cout << "\nThe Size3 is: " << D.Size() << "\n";
 
-    cout << "\nThe Size4 is: " << D.Size() << "\n";
+    // D.DeleteTheFirstNode();
+    // D.DeleteTheLastNode();
+    // D.DeleteNode(N);
 
-    D.DeleteTheFirstNode();
-    D.DeleteTheLastNode();
-    D.DeleteTheFirstNode();
-    D.DeleteTheLastNode();
-    D.DeleteTheFirstNode();
-    D.DeleteTheLastNode();
+    // cout << "\nThe Size4 is: " << D.Size() << "\n";
 
-    if (D.IsEmpty())
-        cout << "\nEmpty 2 Linked List!\n";
-    else
-        cout << "\nIsn't 2Empty!\n";
+    // D.DeleteTheFirstNode();
+    // D.DeleteTheLastNode();
+    // D.DeleteTheFirstNode();
+    // D.DeleteTheLastNode();
+    // D.DeleteTheFirstNode();
+    // D.DeleteTheLastNode();
 
-    cout << "\nExecuting the Clear Method\n";
-    D.Clear();
+    // if (D.IsEmpty())
+    // cout << "\nEmpty 2 Linked List!\n";
+    // else
+    // cout << "\nIsn't 2Empty!\n";
 
-    cout << "\nThe Size5 is: " << D.Size() << "\n";
+    // cout << "\nExecuting the Clear Method\n";
+    // D.Clear();
+
+    // cout << "\nThe Size5 is: " << D.Size() << "\n";
 
     // cout << "\n\n";
     // cout << "+---------------------------------------------------+\n";
