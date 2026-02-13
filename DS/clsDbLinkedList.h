@@ -35,6 +35,7 @@ class clsDbLinkedList : public InterfaceDbLinkedList<T>
 {
 
 private:
+    int _Size;
     typename InterfaceDbLinkedList<T>::Node *Head;
 
 public:
@@ -43,6 +44,7 @@ public:
     clsDbLinkedList()
     {
         this->Head = nullptr;
+        this->_Size = 0;
     };
 
     void InsertAtTheBeginning(T Value) override // Insert At The Beginning
@@ -58,6 +60,7 @@ public:
         };
 
         this->Head = NNode;
+        this->_Size++;
     };
 
     void PrintList() override
@@ -98,6 +101,7 @@ public:
         if (Head == nullptr)
         {
             Head = NNode;
+            this->_Size++;
             return;
         };
 
@@ -111,6 +115,7 @@ public:
         // The Last Element
         NNode->Prev = temp;
         temp->Next = NNode;
+        this->_Size++;
     };
 
     void DeleteTheLastNode() override
@@ -122,6 +127,7 @@ public:
         {
             delete Head;
             Head = nullptr;
+            this->_Size--;
             return;
         }
 
@@ -139,6 +145,7 @@ public:
             Temp->Prev->Next = nullptr;
             Temp->Prev = nullptr;
             delete Temp;
+            this->_Size--;
         };
     };
 
@@ -152,6 +159,7 @@ public:
         {
             delete Head;
             this->Head = nullptr;
+            this->_Size--;
             return;
         };
 
@@ -161,6 +169,7 @@ public:
             Head = Head->Next;
             delete Head->Prev;
             Head->Prev = nullptr;
+            this->_Size--;
         };
     };
 
@@ -185,6 +194,7 @@ public:
         }
 
         delete TheNodeToDelete;
+        this->_Size--;
     };
 
     void InsertAfter(Node *TheNodeYouWantToInsertAfter, T Value) override
@@ -203,6 +213,13 @@ public:
         };
 
         TheNodeYouWantToInsertAfter->Next = NNode;
+        this->_Size++;
+    };
+
+
+    int Size() const 
+    {
+        return this->_Size;
     };
 
     ~clsDbLinkedList() // Destructor
@@ -212,5 +229,4 @@ public:
             DeleteTheLastNode();
         };
     };
-
 };
