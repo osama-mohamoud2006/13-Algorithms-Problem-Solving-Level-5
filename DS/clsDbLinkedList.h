@@ -263,7 +263,7 @@ public:
     };
 
 private:
-    bool IsVaildIndex(int Index)
+    bool IsvalidIndex(int Index)
     {
         return (!(_Head == nullptr || Index >= this->_Size || Index < 0));
     };
@@ -271,7 +271,7 @@ private:
 public:
     Node *GetNode(int Index)
     {
-        if (!IsVaildIndex(Index))
+        if (!IsvalidIndex(Index))
             return nullptr;
 
         Node *Current = this->_Head;
@@ -309,6 +309,16 @@ public:
         };
 
         return false;
+    };
+
+    void InsertAfter(int Index, T Value)
+    {
+        Node *TheNodeToInsertAfter = GetNode(Index);
+        if (TheNodeToInsertAfter != nullptr)
+        {
+             InsertAfter(TheNodeToInsertAfter,Value);
+        }
+        
     };
 
     ~clsDbLinkedList() // Destructor

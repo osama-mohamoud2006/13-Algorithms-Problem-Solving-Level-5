@@ -354,8 +354,12 @@ int main()
     // cout<<"\nIndex 2 is: " <<Indx1->Value<<endl;
     // cout<<"Get Index 2 Value Using GetItem(): "<<D.GetItem(4)<<"\n";
 
-    D.UpdateItem(1, -20);
-    cout << "\nElements After Updating: \n";
+    // D.UpdateItem(55, -20);
+    // cout << "\nElements After Updating: \n";
+    // D.PrintList();
+
+    cout<<"\nAfter Insert After Index[0]: \n";
+    D.InsertAfter(2121,-1000);
     D.PrintList();
 
     // cout<< D._Head->Value <<endl;
