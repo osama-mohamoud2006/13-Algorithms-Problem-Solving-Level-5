@@ -231,7 +231,7 @@ public:
     void Clear() // O(n) Algorithm's Method
     {
         Node *Current = this->_Head;
-        while (Current!=nullptr)
+        while (Current != nullptr)
         {
             Node *NextNode = Current->Next; // The Next Node
             delete Current;
@@ -241,12 +241,21 @@ public:
         this->_Head = nullptr;
     };
 
+private:
+    void SwapPointers(Node *&Node1, Node *&Node2)
+    {
+        Node *Temp = Node1;
+        Node1 = Node2;
+        Node2 = Temp;
+    };
+
+public:
     void Reverse()
     {
         // Get The Last Node
-        while(_Head->Next !=nullptr)
+        while (_Head->Next != nullptr)
         {
-            this->_Head = _Head->Next ; // move to the next node 
+            this->_Head = _Head->Next; // move to the next node
         };
     }
 
@@ -254,5 +263,4 @@ public:
     {
         this->Clear();
     };
-
 };
