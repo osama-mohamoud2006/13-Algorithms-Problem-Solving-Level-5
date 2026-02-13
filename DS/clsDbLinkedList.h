@@ -306,19 +306,22 @@ public:
         {
             Current->Value = Value;
             return true;
-        };
+        }
 
-        return false;
+        else
+            return false;
     };
 
-    void InsertAfter(int Index, T Value) // OverLoading the InsertAfter() Method 
+    bool InsertAfter(int Index, T Value) // OverLoading the InsertAfter() Method
     {
         Node *TheNodeToInsertAfter = GetNode(Index);
         if (TheNodeToInsertAfter != nullptr)
         {
-             InsertAfter(TheNodeToInsertAfter,Value);
+            InsertAfter(TheNodeToInsertAfter, Value);
+            return true;
         }
-        
+        else
+            return false;
     };
 
     ~clsDbLinkedList() // Destructor

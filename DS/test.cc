@@ -359,7 +359,7 @@ int main()
     // D.PrintList();
 
     cout<<"\nAfter Insert After Index[0]: \n";
-    D.InsertAfter(2121,-1000);
+    D.InsertAfter(2,-1000);
     D.PrintList();
 
     // cout<< D._Head->Value <<endl;
