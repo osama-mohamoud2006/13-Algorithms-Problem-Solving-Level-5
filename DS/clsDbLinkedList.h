@@ -34,7 +34,7 @@ template <class T>
 class clsDbLinkedList : public InterfaceDbLinkedList<T>
 {
 private:
-    typename InterfaceDbLinkedList<T>::Node *Head;
+    typename InterfaceDbLinkedList<T>::Node *_Head;
 
 protected:
     int _Size; // to track the num of elements in linked list
@@ -45,7 +45,7 @@ public:
     clsDbLinkedList()
     {
 
-        this->Head = nullptr;
+        this->_Head = nullptr;
         this->_Size = 0;
     };
 
@@ -54,25 +54,25 @@ public:
         Node *NNode = new Node(Value); // create new node
 
         NNode->Prev = nullptr; // as it will be the first node
-        NNode->Next = Head;
+        NNode->Next = _Head;
 
-        if (this->Head != nullptr) // there is node
+        if (this->_Head != nullptr) // there is node
         {
-            Head->Prev = NNode;
+            _Head->Prev = NNode;
         };
 
-        this->Head = NNode;
+        this->_Head = NNode;
         this->_Size++;
     };
 
     void PrintList() override
     {
-        if (Head == nullptr)
+        if (_Head == nullptr)
         {
             std::cout << "NULL\n";
             return;
         }
-        Node *Temp = this->Head;
+        Node *Temp = this->_Head;
 
         while (Temp != nullptr)
         {
@@ -84,7 +84,7 @@ public:
     // return the address of the found node
     Node *Find(T Value) override
     {
-        Node *Temp = Head;
+        Node *Temp = _Head;
         while (Temp != nullptr)
         {
             if (Temp->Value == Value)
@@ -100,15 +100,15 @@ public:
         // Create New Node
         Node *NNode = new Node(Value);
 
-        if (Head == nullptr)
+        if (_Head == nullptr)
         {
-            Head = NNode;
+            _Head = NNode;
             this->_Size++;
             return;
         };
 
         // Traverse until The last Node
-        Node *temp = this->Head;
+        Node *temp = this->_Head;
         while (temp->Next != nullptr)
         {
             temp = temp->Next;
@@ -122,13 +122,13 @@ public:
 
     void DeleteTheLastNode() override
     {
-        if (Head == nullptr)
+        if (_Head == nullptr)
             return;
 
-        if (Head->Next == nullptr) // the real last element
+        if (_Head->Next == nullptr) // the real last element
         {
-            delete Head;
-            Head = nullptr;
+            delete _Head;
+            _Head = nullptr;
             this->_Size--;
             return;
         }
@@ -136,7 +136,7 @@ public:
         else
         {
             // Traverse to get the last node
-            Node *Current = this->Head;
+            Node *Current = this->_Head;
             while (Current->Next->Next != nullptr) // O(N)
             {
                 Current = Current->Next; // move to the next element
@@ -153,36 +153,36 @@ public:
 
     void DeleteTheFirstNode() override
     {
-        if (Head == nullptr)
+        if (_Head == nullptr)
             return;
 
         // Case 1
-        if (this->Head->Next == nullptr) // the first and the last node
+        if (this->_Head->Next == nullptr) // the first and the last node
         {
-            delete Head;
-            this->Head = nullptr;
+            delete _Head;
+            this->_Head = nullptr;
             this->_Size--;
             return;
         };
 
         // Case 2
-        if (this->Head->Next != nullptr)
+        if (this->_Head->Next != nullptr)
         {
-            Head = Head->Next;
-            delete Head->Prev;
-            Head->Prev = nullptr;
+            _Head = _Head->Next;
+            delete _Head->Prev;
+            _Head->Prev = nullptr;
             this->_Size--;
         };
     };
 
     void DeleteNode(Node *TheNodeToDelete) override
     {
-        if (TheNodeToDelete == nullptr || this->Head == nullptr)
+        if (TheNodeToDelete == nullptr || this->_Head == nullptr)
             return;
 
-        if (TheNodeToDelete == this->Head)
+        if (TheNodeToDelete == this->_Head)
         {
-            Head = Head->Next;
+            _Head = _Head->Next;
         }
 
         if (TheNodeToDelete->Next != nullptr)
@@ -201,7 +201,7 @@ public:
 
     void InsertAfter(Node *TheNodeYouWantToInsertAfter, T Value) override
     {
-        if (this->Head == nullptr || TheNodeYouWantToInsertAfter == nullptr)
+        if (this->_Head == nullptr || TheNodeYouWantToInsertAfter == nullptr)
             return;
 
         Node *NNode = new Node(Value);
@@ -225,22 +225,24 @@ public:
 
     bool IsEmpty() const
     {
-        return (this->Head == nullptr && this->_Size == 0);
+        return (this->_Head == nullptr && this->_Size == 0);
     };
 
-
-    void Clear()
+    void Clear() // O(n) Algorithm's Method
     {
-         while (!IsEmpty())
+        Node *Current = this->_Head;
+        while (Current!=nullptr)
         {
-           DeleteTheFirstNode(); // O(1) Algorithm's Method
+            Node *NextNode = Current->Next; // The Next Node
+            delete Current;
+            Current = NextNode;
         };
+        this->_Size = 0;
+        this->_Head = nullptr;
     };
 
     ~clsDbLinkedList() // Destructor
     {
-        this->
+        this->Clear();
     };
-
-
 };

@@ -150,14 +150,14 @@ void TestInsertAfterMid()
 
 void TestInsertAfterHead()
 {
-    cout << "======== Test 12: InsertAfter (Head - Multiple elements) ========\n";
+    cout << "======== Test 12: InsertAfter (_Head - Multiple elements) ========\n";
     clsDbLinkedList<int> Db1;
     Db1.InsertAtTheEnd(10);
     Db1.InsertAtTheEnd(20);
     Db1.InsertAtTheEnd(30);
 
-    clsDbLinkedList<int>::Node *Head = Db1.Find(10);
-    Db1.InsertAfter(Head, 15);
+    clsDbLinkedList<int>::Node *_Head = Db1.Find(10);
+    Db1.InsertAfter(_Head, 15);
     cout << "Expected: 10 15 20 30\nActual:\n";
     Db1.PrintList();
     cout << "Status: PASS\n\n";
@@ -165,12 +165,12 @@ void TestInsertAfterHead()
 
 void TestInsertAfterHeadSingle()
 {
-    cout << "======== Test 13: InsertAfter (Head - Single element only) ========\n";
+    cout << "======== Test 13: InsertAfter (_Head - Single element only) ========\n";
     clsDbLinkedList<int> Db1;
     Db1.InsertAtTheEnd(10);
 
-    clsDbLinkedList<int>::Node *Head = Db1.Find(10);
-    Db1.InsertAfter(Head, 20);
+    clsDbLinkedList<int>::Node *_Head = Db1.Find(10);
+    Db1.InsertAfter(_Head, 20);
     cout << "Expected: 10 20\nActual:\n";
     Db1.PrintList();
     cout << "Status: PASS\n\n";
