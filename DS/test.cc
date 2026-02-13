@@ -326,8 +326,6 @@ void TestComplexScenario2()
     cout << "Status: PASS\n\n";
 }
 
-
-
 int main()
 {
     clsDbLinkedList<short> D;
@@ -346,13 +344,16 @@ int main()
     else
         cout << "\nIsn't 2Empty!\n";
 
-
     cout << "\nThe Size1 is: " << D.Size() << "\n";
 
     D.InsertAtTheEnd(2);
     D.InsertAtTheEnd(23);
     D.InsertAtTheEnd(34);
-    cout << "\nThe Size2 is: " << D.Size() << "\n";
+
+    cout << "\nExecuting the Clear Method\n";
+    D.Clear();
+
+    cout << "\nThe Size(After Clearing) is: " << D.Size() << "\n";
 
     clsDbLinkedList<short>::Node *N = D.Find(10);
     D.InsertAfter(N, -800);
@@ -372,12 +373,14 @@ int main()
     D.DeleteTheFirstNode();
     D.DeleteTheLastNode();
 
-    
     if (D.IsEmpty())
         cout << "\nEmpty 2 Linked List!\n";
     else
         cout << "\nIsn't 2Empty!\n";
-        
+
+    cout << "\nExecuting the Clear Method\n";
+    D.Clear();
+
     cout << "\nThe Size5 is: " << D.Size() << "\n";
 
     // cout << "\n\n";

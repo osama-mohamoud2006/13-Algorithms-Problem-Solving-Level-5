@@ -44,7 +44,7 @@ public:
 
     clsDbLinkedList()
     {
-       
+
         this->Head = nullptr;
         this->_Size = 0;
     };
@@ -137,7 +137,7 @@ public:
         {
             // Traverse to get the last node
             Node *Current = this->Head;
-            while (Current->Next->Next != nullptr)
+            while (Current->Next->Next != nullptr) // O(N)
             {
                 Current = Current->Next; // move to the next element
             };
@@ -228,11 +228,22 @@ public:
         return (this->Head == nullptr && this->_Size == 0);
     };
 
-    ~clsDbLinkedList() // Destructor
+
+    void Clear()
     {
-        while (Head != nullptr)
+         while (!IsEmpty())
         {
-            DeleteTheLastNode();
+           DeleteTheFirstNode(); // O(1) Algorithm's Method
         };
     };
+
+    ~clsDbLinkedList() // Destructor
+    {
+        while (!IsEmpty())
+        {
+            DeleteTheFirstNode();
+        };
+    };
+
+
 };
