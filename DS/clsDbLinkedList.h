@@ -262,9 +262,16 @@ public:
             _Head = Temp->Prev;
     };
 
+private:
+    bool IsVaildIndex(int Index)
+    {
+        return (!(_Head == nullptr || Index >= this->_Size || Index < 0));
+    };
+
+public:
     Node *GetNode(int Index)
     {
-        if (_Head == nullptr || Index >= this->_Size || Index < 0)
+       if (!IsVaildIndex(Index))
             return nullptr;
 
         Node *Current = this->_Head;
@@ -286,7 +293,21 @@ public:
 
     T GetItem(int Index)
     {
-        return (GetNode(Index)->Value);
+        Node *Val = GetNode(Index);
+        return (Val != nullptr) ? Val->Value : throw std::out_of_range("Out Of Range!");
+    };
+
+    void UpdateItem(int Index, T Value)
+    {
+        if (!IsVaildIndex(Index)) // Check the index and Head 
+           {
+              throw std::out_of_range("\nInvalid Index!\n");
+              return ;
+           } 
+
+        Node *Current = GetNode(Index);  // Get The Node By Index
+
+        Current->Value = Value;
     };
 
     ~clsDbLinkedList() // Destructor

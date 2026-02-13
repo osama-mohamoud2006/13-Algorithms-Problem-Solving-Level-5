@@ -335,31 +335,35 @@ int main()
     else
         cout << "\nIsn't Empty!\n";
 
-   // D.InsertAtTheBeginning(10);
-   // D.InsertAtTheBeginning(20);
-  //  D.InsertAtTheBeginning(30);
+    // D.InsertAtTheBeginning(10);
+    // D.InsertAtTheBeginning(20);
+    //  D.InsertAtTheBeginning(30);
 
     D.InsertAtTheEnd(2);
     D.InsertAtTheEnd(23);
     D.InsertAtTheEnd(34);
 
-    cout << "\nBefore Reversing\n";
+    cout << "\nElements: \n";
     D.PrintList();
 
-       cout << "\nAfter Reversing\n";
-    D.Reverse();
-      D.PrintList();
+    //    cout << "\nAfter Reversing\n";
+    // D.Reverse();
+    //   D.PrintList();
 
+    //clsDbLinkedList<short>::Node *Indx1 = D.GetNode(5);
+    // cout<<"\nIndex 2 is: " <<Indx1->Value<<endl;
+    // cout<<"Get Index 2 Value Using GetItem(): "<<D.GetItem(4)<<"\n";
 
-      clsDbLinkedList<short>::Node * Indx1 = D.GetNode(2);
-      cout<<"\nIndex 2 is: " <<Indx1->Value<<endl;
-      cout<<"Get Index 2 Value Using GetItem(): "<<D.GetItem(2)<<"\n"; 
-   // cout<< D._Head->Value <<endl; 
+    D.UpdateItem(1, -20);
+    cout << "\nElements After Updating: \n";
+    D.PrintList();
 
-   // cout << "\nExecuting the Clear Method\n";
-   // D.Clear();
-//
-   // cout << "\nThe Size(After Clearing) is: " << D.Size() << "\n";
+    // cout<< D._Head->Value <<endl;
+
+    // cout << "\nExecuting the Clear Method\n";
+    // D.Clear();
+    //
+    // cout << "\nThe Size(After Clearing) is: " << D.Size() << "\n";
 
     // clsDbLinkedList<short>::Node *N = D.Find(10);
     // D.InsertAfter(N, -800);
