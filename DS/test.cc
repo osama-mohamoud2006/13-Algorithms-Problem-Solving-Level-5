@@ -351,8 +351,9 @@ int main()
       D.PrintList();
 
 
-      clsDbLinkedList<short>::Node * Indx1 = D.GetNode(4);
+      clsDbLinkedList<short>::Node * Indx1 = D.GetNode(2);
       cout<<"\nIndex 2 is: " <<Indx1->Value<<endl;
+      cout<<"Get Index 2 Value Using GetItem(): "<<D.GetItem(2)<<"\n"; 
    // cout<< D._Head->Value <<endl; 
 
    // cout << "\nExecuting the Clear Method\n";

@@ -264,7 +264,7 @@ public:
 
     Node *GetNode(int Index)
     {
-        if (_Head == nullptr || Index >= this->_Size || Index<0)
+        if (_Head == nullptr || Index >= this->_Size || Index < 0)
             return nullptr;
 
         Node *Current = this->_Head;
@@ -277,11 +277,16 @@ public:
         //     Current = Current->Next;
         // };
 
-        for(int i=0; i<Index; i++)
+        for (int i = 0; i < Index; i++)
         {
             Current = Current->Next;
         };
         return Current;
+    };
+
+    T GetItem(int Index)
+    {
+        return (GetNode(Index)->Value);
     };
 
     ~clsDbLinkedList() // Destructor
