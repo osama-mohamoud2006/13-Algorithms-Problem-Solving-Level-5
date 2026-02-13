@@ -264,8 +264,9 @@ public:
 
     Node *GetNode(int Index)
     {
-        if (_Head == nullptr || Index >= this->_Size)
+        if (_Head == nullptr || Index >= this->_Size || Index<0)
             return nullptr;
+
         Node *Current = this->_Head;
         int C = 0;
         while (Current != nullptr)
