@@ -33,7 +33,7 @@ public: // i put Node Here Because Of The pure virtual Methods That Return Node(
 template <class T>
 class clsDbLinkedList : public InterfaceDbLinkedList<T>
 {
-private:
+public:
     typename InterfaceDbLinkedList<T>::Node *_Head;
 
 protected:
@@ -241,22 +241,41 @@ public:
         this->_Head = nullptr;
     };
 
-private:
-    void SwapPointers(Node *&Node1, Node *&Node2)
-    {
-        Node *Temp = Node1;
-        Node1 = Node2;
-        Node2 = Temp;
-    };
-
-public:
     void Reverse()
     {
-        // Get The Last Node
-        while (_Head->Next != nullptr)
+        if (this->_Head == nullptr || _Head->Next == nullptr)
+            return; // there no need to reverse one node or reverse null
+
+        Node *Current = this->_Head;
+        Node *Temp = nullptr;
+
+        while (Current != nullptr)
         {
-            this->_Head = _Head->Next; // move to the next node
+            Temp = Current->Prev;
+            Current->Prev = Current->Next;
+            Current->Next = Temp;
+
+            Current = Current->Prev; // move to the next node
         };
+
+        if (Temp != nullptr)
+            _Head = Temp->Prev;
+    };
+
+    Node *GetNode(int Index)
+    {
+        if (_Head == nullptr || Index >= this->_Size)
+            return nullptr;
+        Node *Current = this->_Head;
+        int C = 0;
+        while (Current != nullptr)
+        {
+            if (C == Index)
+                return Current;
+            C++;
+            Current = Current->Next;
+        };
+        return nullptr;
     }
 
     ~clsDbLinkedList() // Destructor

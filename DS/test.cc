@@ -335,9 +335,9 @@ int main()
     else
         cout << "\nIsn't Empty!\n";
 
-    D.InsertAtTheBeginning(10);
-    D.InsertAtTheBeginning(20);
-    D.InsertAtTheBeginning(30);
+   // D.InsertAtTheBeginning(10);
+   // D.InsertAtTheBeginning(20);
+  //  D.InsertAtTheBeginning(30);
 
     D.InsertAtTheEnd(2);
     D.InsertAtTheEnd(23);
@@ -348,6 +348,12 @@ int main()
 
        cout << "\nAfter Reversing\n";
     D.Reverse();
+      D.PrintList();
+
+
+      clsDbLinkedList<short>::Node * Indx1 = D.GetNode(3);
+      cout<<"\nIndex 2 is: " <<Indx1->Value<<endl;
+   // cout<< D._Head->Value <<endl; 
 
    // cout << "\nExecuting the Clear Method\n";
    // D.Clear();
