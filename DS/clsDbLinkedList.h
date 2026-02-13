@@ -271,7 +271,7 @@ private:
 public:
     Node *GetNode(int Index)
     {
-       if (!IsVaildIndex(Index))
+        if (!IsVaildIndex(Index))
             return nullptr;
 
         Node *Current = this->_Head;
@@ -297,17 +297,18 @@ public:
         return (Val != nullptr) ? Val->Value : throw std::out_of_range("Out Of Range!");
     };
 
-    void UpdateItem(int Index, T Value)
+    bool UpdateItem(int Index, T Value)
     {
-        if (!IsVaildIndex(Index)) // Check the index and Head 
-           {
-              throw std::out_of_range("\nInvalid Index!\n");
-              return ;
-           } 
 
-        Node *Current = GetNode(Index);  // Get The Node By Index
+        Node *Current = GetNode(Index); // Get The Node By Index
 
-        Current->Value = Value;
+        if (Current != nullptr)
+        {
+            Current->Value = Value;
+            return true;
+        };
+
+        return false;
     };
 
     ~clsDbLinkedList() // Destructor
