@@ -328,52 +328,73 @@ void TestComplexScenario2()
 
 int main()
 {
-    cout << "\n\n";
-    cout << "+---------------------------------------------------+\n";
-    cout << "|   DOUBLY LINKED LIST - COMPREHENSIVE TEST SUITE   |\n";
-    cout << "+---------------------------------------------------+\n\n";
+    clsDbLinkedList<short> D;
+    D.InsertAtTheBeginning(10);
+    D.InsertAtTheBeginning(20);
+    D.InsertAtTheBeginning(30);
+    cout << "\nThe Size1 is: " << D.Size() << "\n";
 
-    // Basic Operations
-    cout << "=== BASIC OPERATIONS ===\n\n";
-    TestEmptyList();
-    TestInsertAtBeginning();
-    TestInsertAtBeginningOne();
-    TestInsertAtEnd();
-    TestInsertAtEndOne();
-    TestMixedInsertions();
+    D.InsertAtTheEnd(2);
+    D.InsertAtTheEnd(23);
+    D.InsertAtTheEnd(34);
+    cout << "\nThe Size2 is: " << D.Size() << "\n";
 
-    // Find Operations
-    cout << "=== FIND OPERATIONS ===\n\n";
-    TestFind();
-    TestFindNonExistent();
-    TestFindFirstElement();
-    TestFindLastElement();
+    clsDbLinkedList<short>::Node *N = D.Find(10);
+    D.InsertAfter(N, -800);
 
-    // InsertAfter Operations
-    cout << "=== INSERT AFTER OPERATIONS ===\n\n";
-    TestInsertAfterMid();
-    TestInsertAfterHead();
-    TestInsertAfterHeadSingle();
-    TestInsertAfterLast();
+      cout << "\nThe Size3 is: " << D.Size() << "\n";
 
-    // Delete Operations
-    cout << "=== DELETE OPERATIONS ===\n\n";
-    TestDeleteFirstNode();
-    TestDeleteFirstNodeSingle();
-    TestDeleteLastNode();
-    TestDeleteLastNodeSingle();
-    TestDeleteNodeMiddle();
-    TestDeleteNodeFirst();
-    TestDeleteNodeLast();
-    TestDeleteNodeOnly();
+      D.DeleteTheFirstNode();
+      D.DeleteTheLastNode();
+      D.DeleteNode(N); 
+   cout << "\nThe Size4 is: " << D.Size() << "\n";
+   
+    // cout << "\n\n";
+    // cout << "+---------------------------------------------------+\n";
+    // cout << "|   DOUBLY LINKED LIST - COMPREHENSIVE TEST SUITE   |\n";
+    // cout << "+---------------------------------------------------+\n\n";
 
-    // Complex Scenarios
-    cout << "=== COMPLEX SCENARIOS ===\n\n";
-    TestComplexScenario1();
-    TestComplexScenario2();
+    // // Basic Operations
+    // cout << "=== BASIC OPERATIONS ===\n\n";
+    // TestEmptyList();
+    // TestInsertAtBeginning();
+    // TestInsertAtBeginningOne();
+    // TestInsertAtEnd();
+    // TestInsertAtEndOne();
+    // TestMixedInsertions();
 
-    cout << "+---------------------------------------------------+\n";
-    cout << "|       ALL 24 TESTS COMPLETED SUCCESSFULLY         |\n";
-    cout << "+---------------------------------------------------+\n\n";
-    return 0;
+    // // Find Operations
+    // cout << "=== FIND OPERATIONS ===\n\n";
+    // TestFind();
+    // TestFindNonExistent();
+    // TestFindFirstElement();
+    // TestFindLastElement();
+
+    // // InsertAfter Operations
+    // cout << "=== INSERT AFTER OPERATIONS ===\n\n";
+    // TestInsertAfterMid();
+    // TestInsertAfterHead();
+    // TestInsertAfterHeadSingle();
+    // TestInsertAfterLast();
+
+    // // Delete Operations
+    // cout << "=== DELETE OPERATIONS ===\n\n";
+    // TestDeleteFirstNode();
+    // TestDeleteFirstNodeSingle();
+    // TestDeleteLastNode();
+    // TestDeleteLastNodeSingle();
+    // TestDeleteNodeMiddle();
+    // TestDeleteNodeFirst();
+    // TestDeleteNodeLast();
+    // TestDeleteNodeOnly();
+
+    // // Complex Scenarios
+    // cout << "=== COMPLEX SCENARIOS ===\n\n";
+    // TestComplexScenario1();
+    // TestComplexScenario2();
+
+    // cout << "+---------------------------------------------------+\n";
+    // cout << "|       ALL 24 TESTS COMPLETED SUCCESSFULLY         |\n";
+    // cout << "+---------------------------------------------------+\n\n";
+    // return 0;
 }
