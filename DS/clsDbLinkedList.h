@@ -268,16 +268,21 @@ public:
             return nullptr;
 
         Node *Current = this->_Head;
-        int C = 0;
-        while (Current != nullptr)
+        // int C = 0;
+        // while (Current != nullptr)
+        // {
+        //     if (C == Index)
+        //         return Current;
+        //     C++;
+        //     Current = Current->Next;
+        // };
+
+        for(int i=0; i<Index; i++)
         {
-            if (C == Index)
-                return Current;
-            C++;
             Current = Current->Next;
         };
-        return nullptr;
-    }
+        return Current;
+    };
 
     ~clsDbLinkedList() // Destructor
     {

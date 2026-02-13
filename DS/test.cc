@@ -351,7 +351,7 @@ int main()
       D.PrintList();
 
 
-      clsDbLinkedList<short>::Node * Indx1 = D.GetNode(3);
+      clsDbLinkedList<short>::Node * Indx1 = D.GetNode(4);
       cout<<"\nIndex 2 is: " <<Indx1->Value<<endl;
    // cout<< D._Head->Value <<endl; 
 
