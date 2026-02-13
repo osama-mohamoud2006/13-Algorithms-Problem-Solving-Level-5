@@ -34,11 +34,12 @@ template <class T>
 class clsDbLinkedList : public InterfaceDbLinkedList<T>
 {
 
-private:
-    int _Size;
-    typename InterfaceDbLinkedList<T>::Node *Head;
+protected:
+    int _Size; // to track the num of elements in linked list 
 
 public:
+    typename InterfaceDbLinkedList<T>::Node *Head;
+
     using Node = typename InterfaceDbLinkedList<T>::Node; // to avoid writing unnecessary syntax every time (i inherited it)
 
     clsDbLinkedList()
@@ -216,8 +217,7 @@ public:
         this->_Size++;
     };
 
-
-    int Size() const 
+    int Size() const // O(1) Algorithm
     {
         return this->_Size;
     };
