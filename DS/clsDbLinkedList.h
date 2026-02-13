@@ -239,10 +239,7 @@ public:
 
     ~clsDbLinkedList() // Destructor
     {
-        while (!IsEmpty())
-        {
-            DeleteTheFirstNode();
-        };
+        this->
     };
 
 
