@@ -1,13 +1,13 @@
-#include <../DS/clsStack.h>
+#include "../DS/clsStack.h"
 #include <iostream>
 #include <stack>
 using namespace std;
 
 void Print(stack<short> S)
 {
-    while (S.empty())
+    while (!S.empty())
     {
-        cout << S.top() << " "; // the last pushed element in the stack
+        cout << S.top() << " "; // the value of  last pushed element in the stack
         S.pop();
     };
 }
@@ -25,12 +25,11 @@ size()	returns the number of elements in the stack
     S.push(20);
     S.push(30);
 
-    cout<<"\nThe Element in Stack are: \n";
+    cout << "\nThe Element in Stack are: \n";
     Print(S);
-cout<<"The SIze Is: "
+    cout << "The SIze Is: " << S.size() << endl;
+
     S.pop(); // remove the last pushed element
-    cout<<"\nThe Element in Stack(After Poping) are: \n";
+    cout << "\nThe Element in Stack(After Poping) are: \n";
     Print(S);
-
-
 };

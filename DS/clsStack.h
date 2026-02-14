@@ -1,4 +1,4 @@
-#include <../DS/clsDbLinkedList.h>
+#include "../DS/clsDbLinkedList.h"
 
 template <class T>
 class StackInterface
@@ -10,4 +10,37 @@ public:
     virtual void Print() = 0;
     virtual void Push(T Value) = 0;
     virtual void Pop() = 0;
+};
+
+template <class T>
+class clsStack : StackInterface<T>
+{
+    // LIFO = Last In First Out
+    // this class is just adapter
+    // linked list is just container
+    // so totally it is container adapter
+
+    private:
+    clsDbLinkedList<T> Underlying;
+
+    public:
+     void Push(T Value) override
+     {
+        Underlying.InsertAtTheEnd(Value);
+     };
+
+     void Pop() override
+     {
+        Underlying.DeleteTheLastNode(); 
+     };
+
+     void Print()override
+     {
+        Underlying.PrintList();
+     };
+
+     int Size() override
+     {
+        
+     };
 };
