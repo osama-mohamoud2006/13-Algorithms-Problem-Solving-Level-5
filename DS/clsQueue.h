@@ -20,28 +20,23 @@ class clsQueue : public InterfaceQueue<T>
     // and linked list is the container
     // so totally it is adapter container
 
-private:
-    clsDbLinkedList<T> Underlying;
-    int _Size = 0;
+protected:
+    clsDbLinkedList<T> Underlying; /// Compositation 
 
 public:
     void Push(T Value) override // insert at the end
     {
         Underlying.InsertAtTheEnd(Value);
-        _Size++;
     };
 
     void Pop() override // remove from the first
     {
-        if (_Size == 0)
-            return; // underflow protection
         Underlying.DeleteTheFirstNode();
-        _Size--;
     };
 
     int Size() override
     {
-        return this->_Size;
+        return Underlying.Size();
     };
 
     T Front() override
@@ -51,16 +46,17 @@ public:
 
     T Back() override
     {
-        return Underlying.GetItem((this->_Size - 1)); // return the last element
+        return Underlying.GetItem((Size() - 1)); // return the last element
     };
 
     bool Empty()
     {
-        return (Underlying.IsEmpty() && (this->_Size == 0));
+        return (Underlying.IsEmpty());
     };
 
     void Print() override
     {
        Underlying.PrintList(); 
     };
+
 };

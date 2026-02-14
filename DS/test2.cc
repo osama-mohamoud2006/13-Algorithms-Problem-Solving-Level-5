@@ -44,28 +44,5 @@ int main()
     Q.Pop();
     cout << "\nQueue elements After Poping The First Element(FIFO) are:\n";
     Q.Print();
-
-     Q.Pop();
-      Q.Pop();
-       Q.Pop();
-        Q.Pop();
-         Q.Pop();
-          Q.Pop();
-           Q.Pop();
-            Q.Pop();
-             Q.Pop();
-              Q.Pop();
-               Q.Pop();
-                Q.Pop();
-                 Q.Pop();
-                  Q.Pop();
-                   Q.Pop();
-
-    cout << "\nthe size is: " << Q.Size() << endl;
-    cout << "The Front is: " << Q.Front() << endl;
-    cout << "The Back is: " << Q.Back() << endl;
-
-    cout << "\nQueue elements are:\n";
-    Q.Print();
-
+    
 };
