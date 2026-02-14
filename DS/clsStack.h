@@ -20,27 +20,39 @@ class clsStack : StackInterface<T>
     // linked list is just container
     // so totally it is container adapter
 
-    private:
+private:
     clsDbLinkedList<T> Underlying;
 
-    public:
-     void Push(T Value) override
-     {
-        Underlying.InsertAtTheEnd(Value);
-     };
+public:
+    void Push(T Value) override
+    {
+        Underlying.InsertAtTheBeginning(Value);
+    };
 
-     void Pop() override
-     {
-        Underlying.DeleteTheLastNode(); 
-     };
+    void Pop() override
+    {
+        Underlying.DeleteTheFirstNode();
+    };
 
-     void Print()override
-     {
+    void Print() override
+    {
         Underlying.PrintList();
-     };
+    };
 
-     int Size() override
-     {
-        
-     };
+    int Size() override
+    {
+        return Underlying.Size();
+    };
+
+    T Top() override
+    {
+        return Underlying.GetItem(0);
+    };
+
+    bool Empty() override
+    {
+        return Underlying.IsEmpty();
+    };
+
+
 };

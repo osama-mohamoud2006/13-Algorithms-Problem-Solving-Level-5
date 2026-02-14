@@ -13,23 +13,40 @@ void Print(stack<short> S)
 }
 int main()
 {
-    stack<short> S;
-    /*
+//     stack<short> S;
+//     /*
 
 
-size()	returns the number of elements in the stack
+// size()	returns the number of elements in the stack
 
-\    */
+// \    */
 
-    S.push(10);
-    S.push(20);
-    S.push(30);
+//     S.push(10);
+//     S.push(20);
+//     S.push(30);
 
-    cout << "\nThe Element in Stack are: \n";
-    Print(S);
-    cout << "The SIze Is: " << S.size() << endl;
+//     cout << "\nThe Element in Stack are: \n";
+//     Print(S);
+//     cout << "The SIze Is: " << S.size() << endl;
 
-    S.pop(); // remove the last pushed element
-    cout << "\nThe Element in Stack(After Poping) are: \n";
-    Print(S);
+//     S.pop(); // remove the last pushed element
+//     cout << "\nThe Element in Stack(After Poping) are: \n";
+//     Print(S);
+
+
+   clsStack<short> S;
+   S.Push(10);
+   S.Push(20);
+   S.Push(30);
+
+   cout<<"\nElements are: \n";
+   S.Print();
+
+   S.Pop();
+      cout<<"\nElements are(After POPing): \n";
+   S.Print();
+
+   cout<<"\nThe Size is: "<<S.Size()<<endl;
+   cout<<"The Top Element is: "<<S.Top()<<endl; 
+
 };
