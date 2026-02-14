@@ -19,7 +19,7 @@ class clsQueue : public InterfaceQueue<T>
 
 private:
     clsDbLinkedList<T> Underlying;
-    int _Size=0 ;
+    int _Size = 0;
 
 public:
     void Push(T Value) override // insert at the end
@@ -30,10 +30,39 @@ public:
 
     void Pop() override // remove from the first
     {
-        if(_Size==0) return ; // underflow protection 
-       Underlying.DeleteTheFirstNode();
-       _Size--;
+        if (_Size == 0)
+            return; // underflow protection
+        Underlying.DeleteTheFirstNode();
+        _Size--;
     };
 
+    int Size() override
+    {
+        return this->_Size;
+    };
 
+    T Front() override
+    {
+        return Underlying.GetItem(0); // return the first element
+    };
+
+    T Back() override
+    {
+        return Underlying.GetItem((this->_Size - 1)); // return the last element
+    };
+
+    bool Empty()
+    {
+        return (this->_Size == 0);
+    }
+
+    void Print() override
+    {
+        clsQueue<T> Temp = *this;
+        while (!this->Empty())
+        {
+            cout <<Temp->Front() <<" ";
+            Temp->Pop();
+        };
+    };
 };
