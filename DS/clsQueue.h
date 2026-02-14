@@ -56,16 +56,11 @@ public:
 
     bool Empty()
     {
-        return (this->_Size == 0);
-    }
+        return (Underlying.IsEmpty() && (this->_Size == 0));
+    };
 
     void Print() override
     {
-        clsQueue<T> Temp = *this;
-        while (!this->Empty())
-        {
-            std::cout <<Temp.Front() <<" ";
-            Temp.Pop();
-        };
+       Underlying.PrintList(); 
     };
 };

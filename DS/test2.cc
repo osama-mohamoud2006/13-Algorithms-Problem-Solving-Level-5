@@ -26,7 +26,7 @@ int main()
     // cout << "\nThe Front Element: " << Q.front() << endl;
     // cout << "The Back/Read Element: " << Q.back() << endl;
 
-    // cout<<"Num OF Element: "<<Q.size()<<endl; 
+    // cout<<"Num OF Element: "<<Q.size()<<endl;
 
     clsQueue<short> Q;
     Q.Push(10);
@@ -34,11 +34,38 @@ int main()
     Q.Push(30);
     Q.Push(40);
 
-    cout << "\nthe size is: "<<Q.Size()<<endl; 
-    cout<<"The Front is: "<<Q.Front()<<endl; 
-    
-    cout<<"\nQueue elements are:\n";
-   // Q.Print();
+    cout << "\nthe size is: " << Q.Size() << endl;
+    cout << "The Front is: " << Q.Front() << endl;
+    cout << "The Back is: " << Q.Back() << endl;
 
+    cout << "\nQueue elements are:\n";
+    Q.Print();
+
+    Q.Pop();
+    cout << "\nQueue elements After Poping The First Element(FIFO) are:\n";
+    Q.Print();
+
+     Q.Pop();
+      Q.Pop();
+       Q.Pop();
+        Q.Pop();
+         Q.Pop();
+          Q.Pop();
+           Q.Pop();
+            Q.Pop();
+             Q.Pop();
+              Q.Pop();
+               Q.Pop();
+                Q.Pop();
+                 Q.Pop();
+                  Q.Pop();
+                   Q.Pop();
+
+    cout << "\nthe size is: " << Q.Size() << endl;
+    cout << "The Front is: " << Q.Front() << endl;
+    cout << "The Back is: " << Q.Back() << endl;
+
+    cout << "\nQueue elements are:\n";
+    Q.Print();
 
 };
