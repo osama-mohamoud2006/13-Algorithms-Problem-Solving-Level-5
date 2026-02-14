@@ -15,5 +15,25 @@ public:
 template <class T>
 class clsQueue : public InterfaceQueue<T>
 {
+    // FIFO = First in First out
+
+private:
+    clsDbLinkedList<T> Underlying;
+    int _Size=0 ;
+
+public:
+    void Push(T Value) override // insert at the end
+    {
+        Underlying.InsertAtTheEnd(Value);
+        _Size++;
+    };
+
+    void Pop() override // remove from the first
+    {
+        if(_Size==0) return ; // underflow protection 
+       Underlying.DeleteTheFirstNode();
+       _Size--;
+    };
+
 
 };
