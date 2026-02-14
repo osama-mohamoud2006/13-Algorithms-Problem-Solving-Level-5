@@ -3,14 +3,14 @@
 #include <stack>
 using namespace std;
 
-void Print(stack<short> S)
-{
-    while (!S.empty())
-    {
-        cout << S.top() << " "; // the value of  last pushed element in the stack
-        S.pop();
-    };
-}
+// void Print(stack<short> S)
+// {
+//     while (!S.empty())
+//     {
+//         cout << S.top() << " "; // the value of  last pushed element in the stack
+//         S.pop();
+//     };
+// }
 int main()
 {
 //     stack<short> S;

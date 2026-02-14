@@ -2,50 +2,33 @@
 
 template <class T>
 
-class clsStack : clsQueue<T> // reuse the queue again and change its behaviour to cope with stack
+// Public is inheritance visiblity mode which allows to see what this class inherited from the base class for all outsiders
+
+class clsStack : public clsQueue<T> // reuse the queue again and change its behaviour to cope with stack
 {
     // LIFO = Last In First Out
     // this class is just adapter
     // linked list is just container
     // so totally it is container adapter
 
-private:
-    clsDbLinkedList<T> Underlying;
-
 public:
     void Push(T Value) override
     {
-        Underlying.InsertAtTheBeginning(Value);
+        clsQueue<T>::Underlying.InsertAtTheBeginning(Value);
     };
 
     void Pop() override
     {
-        Underlying.DeleteTheFirstNode();
+        clsQueue<T>::Underlying.DeleteTheFirstNode();
     };
 
-    void Print() override
+    T Top()
     {
-        Underlying.PrintList();
+        return clsQueue<T>::Underlying.Front();
     };
-
-    int Size() override
-    {
-        return Underlying.Size();
-    };
-
-    T Top() override
-    {
-        return Underlying.GetItem(0);
-    };
-
-
 };
 
-
-
-
-
-// Another Solution /// 
+// Another Solution ///
 
 // template <class T>
 // class clsStack : StackInterface<T>
@@ -88,6 +71,5 @@ public:
 //     {
 //         return Underlying.IsEmpty();
 //     };
-
 
 // };
