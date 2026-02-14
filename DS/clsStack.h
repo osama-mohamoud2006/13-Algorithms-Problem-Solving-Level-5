@@ -12,19 +12,19 @@ class clsStack : public clsQueue<T> // reuse the queue again and change its beha
     // so totally it is container adapter
 
 public:
-    void Push(T Value) override
+    void Push(T Value) override // redefine the Push method in the queue to cope with LIFO 
     {
         clsQueue<T>::Underlying.InsertAtTheBeginning(Value);
     };
 
-    void Pop() override
-    {
+    void Pop() override   // redefine the Pop method in the queue to cope with LIFO 
+    { 
         clsQueue<T>::Underlying.DeleteTheFirstNode();
     };
 
-    T Top()
+    T Top() // New Method 
     {
-        return clsQueue<T>::Underlying.Front();
+        return clsQueue<T>::Front();
     };
 };
 
