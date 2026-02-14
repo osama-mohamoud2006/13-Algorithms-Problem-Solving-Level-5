@@ -16,6 +16,9 @@ template <class T>
 class clsQueue : public InterfaceQueue<T>
 {
     // FIFO = First in First out
+    // This class is just adapter
+    // and linked list is the container
+    // so totally it is adapter container
 
 private:
     clsDbLinkedList<T> Underlying;
@@ -61,8 +64,8 @@ public:
         clsQueue<T> Temp = *this;
         while (!this->Empty())
         {
-            cout <<Temp->Front() <<" ";
-            Temp->Pop();
+            std::cout <<Temp.Front() <<" ";
+            Temp.Pop();
         };
     };
 };

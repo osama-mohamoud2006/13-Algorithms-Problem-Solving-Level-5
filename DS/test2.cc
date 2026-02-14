@@ -27,4 +27,18 @@ int main()
     // cout << "The Back/Read Element: " << Q.back() << endl;
 
     // cout<<"Num OF Element: "<<Q.size()<<endl; 
+
+    clsQueue<short> Q;
+    Q.Push(10);
+    Q.Push(20);
+    Q.Push(30);
+    Q.Push(40);
+
+    cout << "\nthe size is: "<<Q.Size()<<endl; 
+    cout<<"The Front is: "<<Q.Front()<<endl; 
+    
+    cout<<"\nQueue elements are:\n";
+   // Q.Print();
+
+
 };
