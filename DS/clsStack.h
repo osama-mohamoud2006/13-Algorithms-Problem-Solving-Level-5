@@ -2,7 +2,7 @@
 
 template <class T>
 
-// Public is inheritance visiblity mode which allows to see what this class inherited from the base class for all outsiders
+// Public is an inheritance visiblity mode which allows to see what this class inherited from the base class for all outsiders
 
 class clsStack : public clsQueue<T> // reuse the queue again and change its behaviour to cope with stack
 {
