@@ -18,10 +18,10 @@ class clsQueue : public InterfaceQueue<T>
     // FIFO = First in First out
     // This class is just adapter
     // and linked list is the container
-    // so totally it is adapter container
+    // so totally it is container adapter
 
 protected:
-    clsDbLinkedList<T> Underlying; /// Compositation 
+    clsDbLinkedList<T> Underlying; /// composition
 
 public:
     void Push(T Value) override // insert at the end
@@ -56,7 +56,53 @@ public:
 
     void Print() override
     {
-       Underlying.PrintList(); 
+        Underlying.PrintList();
+    };
+
+    /// From Here To The End  These Methods Aren't Included In Real Queue These Just For Training//
+
+    // applying Composition paradigm //
+
+    // #1 Get Item()
+    T GetItem(int Index)
+    {
+        return Underlying.GetItem(Index);
+    };
+
+    // #2 Reverse()
+    void Reverse()
+    {
+        Underlying.Reverse();
+    };
+
+    // #3 UpdateItem()
+    void UpdateItem(int Index, T NewValue)
+    {
+        Underlying.UpdateItem(Index, NewValue);
+    };
+
+    // #4 InsertAfter()
+    void InsertAfter(int Index, T NewValue)
+    {
+        Underlying.InsertAfter(Index, NewValue);
+    };
+
+    // #5 InsertAtFront()
+    void InsertAtFront(T Value)
+    {
+        Underlying.InsertAtTheBeginning(Value);
+    };
+
+    // #6 InsertAtBack()
+    void InsertAtBack(T Value)
+    {
+        Underlying.InsertAtTheEnd(Value);
+    };
+
+    // #7 Clear()
+    void Clear()
+    {
+        Underlying.Clear();
     };
 
 };

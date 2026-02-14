@@ -44,5 +44,31 @@ int main()
     Q.Pop();
     cout << "\nQueue elements After Poping The First Element(FIFO) are:\n";
     Q.Print();
-    
+
+    cout << "\nItem 1: " << Q.GetItem(1) << endl;
+
+    cout << "\nQueue elements After Reversing are:\n";
+    Q.Reverse();
+    Q.Print();
+
+    Q.UpdateItem(0, -191);
+    cout << "\nQueue elements After Updating[0] are: \n";
+
+    Q.Print();
+
+    Q.InsertAfter(0, -292);
+    cout << "\nQueue elements After inserting After[0] are: \n";
+
+    Q.Print();
+
+    Q.InsertAtFront(1000);
+    cout << "\nQueue elements After inserting At Front are: \n";
+
+    Q.Print();
+
+    cout << "\nAfter Clear\n";
+    Q.Clear();
+        Q.Print();
+
+        
 };
