@@ -324,6 +324,7 @@ public:
             return false;
     };
 
+    
     ~clsDbLinkedList() // Destructor
     {
         this->Clear();
