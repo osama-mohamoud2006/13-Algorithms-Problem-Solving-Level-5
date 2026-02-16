@@ -11,7 +11,7 @@ public:
     virtual T GetItem(int index) = 0;
     virtual void Clear() = 0;
     virtual void Reverse() = 0;
-    virtual void DeleteItem(int Index) = 0;
+    virtual bool DeleteItem(int Index) = 0;
 };
 
 template <class T>
@@ -129,24 +129,29 @@ public:
         };
     }
 
-    void DeleteItem(int Index) override
+    bool DeleteItem(int Index) override
     {
-        if (Index >= _Length)
-            return;
-        int c = 0;
-        T *Temp = new T[c];
-        for (int i = 0; i < _Length; i++)
-        {
-            if (i != Index)
-            {
+        // if (Index >= _Length || 0>Index)
+        //     return;
+        // int c = 0;
+        // T *Temp = new T[c];
+        // for (int i = 0; i < _Length; i++)
+        // {
+        //     if (i != Index)
+        //     {
 
-                Temp[c] = ArrPtr[i];
-                c++;
-            }
-        };
-        delete[] ArrPtr;
-        ArrPtr = Temp;
-        _Length--;
+        //         Temp[c] = ArrPtr[i];
+        //         c++;
+        //     }
+        // };
+        // delete[] ArrPtr;
+        // ArrPtr = Temp;
+        // _Length--;
+
+        if(Index<0 || Index>= _Length) return false;
+
+        
+        // Copy All Element To New Array Before The Index You Wanna To Delete 
     };
 
     ~clsDynamicArray()
