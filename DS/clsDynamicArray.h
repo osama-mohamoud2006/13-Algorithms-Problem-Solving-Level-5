@@ -16,6 +16,7 @@ class clsDynamicArray : public InterfaceclsDynamicArray<T>
 
 protected:
     int _Length = 0;
+    T *TempPtr;
 
 public:
     T *ArrPtr = nullptr;            // Pointer To Allocate Memory
@@ -56,29 +57,35 @@ public:
     };
 
 private:
-    T *CopyArr(T *Arr1, int size)
+    void CopyArr(T *Arr1, int size)
     {
-        T *TempPtr = new T[size]; // temp dynamic array to copy elements to it
-        for (int i = 0; i < size; i++)
+        TempPtr = new T[size]; // temp dynamic array to copy elements to it
+
+        for (int i = 0; i < this->_Length; i++) // according to length of og array fill the new array
         {
             TempPtr[i] = Arr1[i]; // copy element by element
         };
-        return TempPtr;
     };
 
 public:
     void Resize(int size) override
     {
-        T *Temp = CopyArr(this->ArrPtr, size);
+        if(this->_Length == size) return ;
+        if (size < 0)
+            size = 0;
+        if (this->_Length > size) // shrinking the array(if the og array is larger than the new array )
+        {
+            _Length = size;
+        };
+
+        CopyArr(this->ArrPtr, size);
         delete[] ArrPtr;
-        ArrPtr = nullptr;
-        ArrPtr = Temp; // pointer points to the new array
-        this->_Length = size;
+        this->ArrPtr = this->TempPtr; // pointer points to the new array
+        this->_Length = size;         // if size > length
     };
 
     ~clsDynamicArray()
     {
         delete[] ArrPtr;
-        delete[] TempPtr;
     };
 };
