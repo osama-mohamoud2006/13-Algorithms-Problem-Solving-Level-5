@@ -13,8 +13,6 @@ public:
 template <class T>
 class clsDynamicArray : public InterfaceclsDynamicArray<T>
 {
-private:
-    T *TempPtr = nullptr;
 
 protected:
     int _Length = 0;
@@ -58,23 +56,29 @@ public:
     };
 
 private:
-    void CopyArr(T Arr1, int size)
+    T *CopyArr(T *Arr1, int size)
     {
-        TempPtr = new T[size]; // temp dynamic array to copy elements to it
+        T *TempPtr = new T[size]; // temp dynamic array to copy elements to it
         for (int i = 0; i < size; i++)
         {
             TempPtr[i] = Arr1[i]; // copy element by element
         };
+        return TempPtr;
     };
 
-    void Resize(int size) override 
+public:
+    void Resize(int size) override
     {
-
+        T *Temp = CopyArr(this->ArrPtr, size);
+        delete[] ArrPtr;
+        ArrPtr = nullptr;
+        ArrPtr = Temp; // pointer points to the new array
+        this->_Length = size;
     };
 
     ~clsDynamicArray()
     {
         delete[] ArrPtr;
-        delete[] TempPtr ;
+        delete[] TempPtr;
     };
 };

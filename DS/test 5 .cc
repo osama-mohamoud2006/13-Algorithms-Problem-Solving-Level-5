@@ -14,6 +14,12 @@ int main()
     cout << "is empty? " << D.IsEmpty() << endl;
     cout << "The Array Size Is: " << D.ArraySize() << endl;
 
-    cout<<"\nArray Elements Are: \n";
+    cout << "\nArray Elements Are: \n";
+    D.PrintArrayItems();
+
+    cout << "\n\nResizing\n";
+    D.Resize(1);
+    cout << "The Array Size2 Is: " << D.ArraySize() << endl;
+    cout << "\nArray Elements2 Are: \n";
     D.PrintArrayItems();
 }
