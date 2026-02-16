@@ -109,20 +109,23 @@ public:
 
     void Clear() override
     {
-        delete[] ArrPtr;
-        ArrPtr = nullptr;
+        if (ArrPtr != nullptr)
+        {
+            delete[] ArrPtr;
+            ArrPtr = nullptr;
+        }
         _Length = 0;
+        TempPtr = nullptr;
     };
 
     void Reverse() override
     {
         if (_Length == 1 || _Length <= 0)
             return;
-      
-        for (int i = 0; i<_Length/2; i++)
+
+        for (int i = 0; i < _Length / 2; i++)
         {
-            Swap(ArrPtr[i], ArrPtr[_Length-1-i]);
-            
+            Swap(ArrPtr[i], ArrPtr[_Length - 1 - i]);
         }
     }
 
