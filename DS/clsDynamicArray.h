@@ -111,11 +111,11 @@ public:
     {
         if (ArrPtr != nullptr)
         {
+            T *Temp = new T[0];
             delete[] ArrPtr;
-            ArrPtr = nullptr;
-        }
+            ArrPtr = Temp;
+        };
         _Length = 0;
-        TempPtr = nullptr;
     };
 
     void Reverse() override
@@ -126,7 +126,7 @@ public:
         for (int i = 0; i < _Length / 2; i++)
         {
             Swap(ArrPtr[i], ArrPtr[_Length - 1 - i]);
-        }
+        };
     }
 
     ~clsDynamicArray()
