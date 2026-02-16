@@ -148,10 +148,25 @@ public:
         // ArrPtr = Temp;
         // _Length--;
 
-        if(Index<0 || Index>= _Length) return false;
+        if (Index < 0 || Index >= _Length)
+            return false;
 
-        
-        // Copy All Element To New Array Before The Index You Wanna To Delete 
+        _Length--; // decrement length as we delete an item
+        T *Temp = new T[_Length];
+        // Copy All Element To New Array Before The Index You Wanna To Delete
+        for (int i = 0; i < Index; i++)
+        {
+            Temp[i] = ArrPtr[i];
+        };
+
+        // Fill Elements After That Index 
+        for (int i = Index+1; i < _Length+1; i++)
+        {
+            Temp[i-1] = ArrPtr[i];
+        };
+        delete []ArrPtr;
+        ArrPtr = Temp ; 
+        return true;
     };
 
     ~clsDynamicArray()
