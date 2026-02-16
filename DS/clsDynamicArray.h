@@ -11,7 +11,7 @@ public:
     virtual T GetItem(int index) = 0;
     virtual void Clear() = 0;
     virtual void Reverse() = 0;
-    virtual bool DeleteItem(int Index) = 0;
+    virtual bool DeleteItemAt(int Index) = 0;
 };
 
 template <class T>
@@ -129,7 +129,7 @@ public:
         };
     }
 
-    bool DeleteItem(int Index) override
+    bool DeleteItemAt(int Index) override
     {
         // if (Index >= _Length || 0>Index)
         //     return;
@@ -169,14 +169,37 @@ public:
         return true;
     };
 
-bool DeleteFirstItem(){
-    return DeleteItem(0);
-};
+    bool DeleteFirstItem()
+    {
+        return DeleteItemAt(0);
+    };
 
-bool DeleteLastItem()
-{
-    return DeleteItem(_Length-1);
-}
+    bool DeleteLastItem()
+    {
+        return DeleteItemAt(_Length - 1);
+    }
+
+    int Find(T Element)
+    {
+        for (int i = 0; i < _Length; i++)
+        {
+            if (ArrPtr[i] == Element) // return the index
+                return i;
+        }
+        return -1;
+    };
+
+    bool DeleteItem(T Element)
+    {
+       int Index =Find(Element);
+       if(Index == -1)
+       {
+        return false;
+       };
+
+        return DeleteItemAt(Index);
+        return true ; 
+    };
 
     ~clsDynamicArray()
     {

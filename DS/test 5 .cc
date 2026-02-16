@@ -17,11 +17,11 @@ int main()
     cout << "\nArray Elements Are: \n";
     D.PrintArrayItems();
 
-    //cout << "\n\nResizing\n";
-    //D.Resize(1);
-    //cout << "The Array Size2 Is: " << D.ArraySize() << endl;
-    //cout << "\nArray Elements2 Are: \n";
-    //D.PrintArrayItems();
+    // cout << "\n\nResizing\n";
+    // D.Resize(1);
+    // cout << "The Array Size2 Is: " << D.ArraySize() << endl;
+    // cout << "\nArray Elements2 Are: \n";
+    // D.PrintArrayItems();
 
     // cout << "\n\nExtension 1\n";
     // cout << "Item in Index[0]: " << D.GetItem(0) << endl;
@@ -34,16 +34,25 @@ int main()
     // D.Clear();
     // D.PrintArrayItems();
 
-    D.DeleteItem(2);
-    cout<<"\n";
-     D.PrintArrayItems();
+    D.DeleteItemAt(2);
+    cout << "\n";
+    D.PrintArrayItems();
 
+    cout << "\nDelete First Item\n";
+    D.DeleteFirstItem();
+    D.PrintArrayItems();
 
-     cout<<"\nDelete First Item\n";
-     D.DeleteFirstItem();
-       D.PrintArrayItems();
+    cout << "\nDelete Last Item\n";
+    D.DeleteLastItem();
+    D.PrintArrayItems();
 
-       cout<<"\nDelete Last Item\n";
-       D.DeleteLastItem();
-        D.PrintArrayItems();
+    int Index = D.Find(20);
+    if (Index != -1)
+    {
+        cout << "\nFound!\n";
+    }
+
+    cout << "\nAfter Deleting\n";
+    cout<<D.DeleteItem(20)<<endl;
+    D.PrintArrayItems();
 }
