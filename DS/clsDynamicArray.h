@@ -198,7 +198,7 @@ public:
        };
 
         return DeleteItemAt(Index);
-        return true ; 
+        
     };
 
     ~clsDynamicArray()
