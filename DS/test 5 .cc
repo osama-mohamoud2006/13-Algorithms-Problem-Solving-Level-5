@@ -23,14 +23,18 @@ int main()
     //cout << "\nArray Elements2 Are: \n";
     //D.PrintArrayItems();
 
-    cout << "\n\nExtension 1\n";
-    cout << "Item in Index[0]: " << D.GetItem(0) << endl;
+    // cout << "\n\nExtension 1\n";
+    // cout << "Item in Index[0]: " << D.GetItem(0) << endl;
 
-    cout << "\nAfter Reversing:\n";
-    D.Reverse();
-    D.PrintArrayItems();
+    // cout << "\nAfter Reversing:\n";
+    // D.Reverse();
+    // D.PrintArrayItems();
 
-    cout << "\nAfter Clear:\n";
-    D.PrintArrayItems();
-    D.Clear();
+    // cout << "\nAfter Clear:\n";
+    // D.Clear();
+    // D.PrintArrayItems();
+
+    D.DeleteItem(2);
+    cout<<"\n";
+     D.PrintArrayItems();
 }

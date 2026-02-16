@@ -11,6 +11,7 @@ public:
     virtual T GetItem(int index) = 0;
     virtual void Clear() = 0;
     virtual void Reverse() = 0;
+    virtual void DeleteItem(int Index) = 0;
 };
 
 template <class T>
@@ -111,9 +112,8 @@ public:
     {
         if (ArrPtr != nullptr)
         {
-            T *Temp = new T[0];
             delete[] ArrPtr;
-            ArrPtr = Temp;
+            ArrPtr = nullptr;
         };
         _Length = 0;
     };
@@ -129,9 +129,29 @@ public:
         };
     }
 
+    void DeleteItem(int Index) override
+    {
+        if (Index >= _Length)
+            return;
+        int c = 0;
+        T *Temp = new T[c];
+        for (int i = 0; i < _Length; i++)
+        {
+            if (i != Index)
+            {
+
+                Temp[c] = ArrPtr[i];
+                c++;
+            }
+        };
+        delete[] ArrPtr;
+        ArrPtr = Temp;
+        _Length--;
+    };
+
     ~clsDynamicArray()
     {
         delete[] ArrPtr;
-        //delete[] TempPtr;
+        // if(TempPtr!=nullptr)delete[] TempPtr;
     };
 };
