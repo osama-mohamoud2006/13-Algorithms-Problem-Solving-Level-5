@@ -132,6 +132,6 @@ public:
     ~clsDynamicArray()
     {
         delete[] ArrPtr;
-        delete[] TempPtr;
+        //delete[] TempPtr;
     };
 };
