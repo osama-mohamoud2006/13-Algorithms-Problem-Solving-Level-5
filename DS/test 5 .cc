@@ -17,9 +17,20 @@ int main()
     cout << "\nArray Elements Are: \n";
     D.PrintArrayItems();
 
-    cout << "\n\nResizing\n";
-    D.Resize(1);
-    cout << "The Array Size2 Is: " << D.ArraySize() << endl;
-    cout << "\nArray Elements2 Are: \n";
+    //cout << "\n\nResizing\n";
+    //D.Resize(1);
+    //cout << "The Array Size2 Is: " << D.ArraySize() << endl;
+    //cout << "\nArray Elements2 Are: \n";
+    //D.PrintArrayItems();
+
+    cout << "\n\nExtension 1\n";
+    cout << "Item in Index[0]: " << D.GetItem(0) << endl;
+
+    cout << "\nAfter Reversing:\n";
+    D.Reverse();
     D.PrintArrayItems();
+
+    cout << "\nAfter Clear:\n";
+    D.PrintArrayItems();
+    D.Clear();
 }

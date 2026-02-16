@@ -8,6 +8,9 @@ public:
     virtual int ArraySize() = 0;
     virtual void PrintArrayItems() = 0;
     virtual void Resize(int Size) = 0;
+    virtual T GetItem(int index) = 0;
+    virtual void Clear() = 0;
+    virtual void Reverse() = 0;
 };
 
 template <class T>
@@ -66,13 +69,25 @@ private:
             TempPtr[i] = Arr1[i]; // copy element by element
         };
     };
+    void Swap(T &a, T &b)
+    {
+        T Temp = a;
+        a = b;
+        b = Temp;
+    };
 
 public:
     void Resize(int size) override
     {
-        if(this->_Length == size) return ;
+        if (this->_Length == size)
+        {
+            return;
+        };
         if (size < 0)
+        {
             size = 0;
+        };
+
         if (this->_Length > size) // shrinking the array(if the og array is larger than the new array )
         {
             _Length = size;
@@ -84,8 +99,36 @@ public:
         this->_Length = size;         // if size > length
     };
 
+    T GetItem(int index) override
+    {
+        if (0 > index)
+            return T();
+
+        return ArrPtr[index];
+    };
+
+    void Clear() override
+    {
+        delete[] ArrPtr;
+        ArrPtr = nullptr;
+        _Length = 0;
+    };
+
+    void Reverse() override
+    {
+        if (_Length == 1 || _Length <= 0)
+            return;
+      
+        for (int i = 0; i<_Length/2; i++)
+        {
+            Swap(ArrPtr[i], ArrPtr[_Length-1-i]);
+            
+        }
+    }
+
     ~clsDynamicArray()
     {
         delete[] ArrPtr;
+        delete[] TempPtr;
     };
 };
