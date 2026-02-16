@@ -159,15 +159,24 @@ public:
             Temp[i] = ArrPtr[i];
         };
 
-        // Fill Elements After That Index 
-        for (int i = Index+1; i < _Length+1; i++)
+        // Fill Elements After That Index
+        for (int i = Index + 1; i < _Length + 1; i++)
         {
-            Temp[i-1] = ArrPtr[i];
+            Temp[i - 1] = ArrPtr[i];
         };
-        delete []ArrPtr;
-        ArrPtr = Temp ; 
+        delete[] ArrPtr;
+        ArrPtr = Temp;
         return true;
     };
+
+bool DeleteFirstItem(){
+    return DeleteItem(0);
+};
+
+bool DeleteLastItem()
+{
+    return DeleteItem(_Length-1);
+}
 
     ~clsDynamicArray()
     {

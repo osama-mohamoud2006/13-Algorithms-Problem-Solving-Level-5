@@ -37,4 +37,13 @@ int main()
     D.DeleteItem(2);
     cout<<"\n";
      D.PrintArrayItems();
+
+
+     cout<<"\nDelete First Item\n";
+     D.DeleteFirstItem();
+       D.PrintArrayItems();
+
+       cout<<"\nDelete Last Item\n";
+       D.DeleteLastItem();
+        D.PrintArrayItems();
 }
