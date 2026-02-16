@@ -5,12 +5,12 @@ class InterfaceclsDynamicArray
 public:
     virtual void SetItem(int Index, T Value) = 0;
     virtual bool IsEmpty() = 0;
-    int ArraySize() = 0;
-    void PrintArrayItems() = 0;
+    virtual int ArraySize() = 0;
+   virtual void PrintArrayItems() = 0;
 };
 
 template <class T>
-class clsDynamicArray : public InterfaceclsDynamicArray
+class clsDynamicArray : public InterfaceclsDynamicArray<T>
 {
     T *ArrPtr; // Pointer To Allocate Memory
     int _Length;
@@ -32,7 +32,7 @@ public:
 
     bool IsEmpty() override
     {
-        return this->IsEmpty;
+        return this->_IsEmpty;
     };
 
     int ArraySize() override
