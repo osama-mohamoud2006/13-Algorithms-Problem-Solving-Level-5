@@ -10,29 +10,29 @@ public:
 };
 
 template <class T>
-class clsDynamicArray
+class clsDynamicArray : public InterfaceclsDynamicArray
 {
     T *ArrPtr; // Pointer To Allocate Memory
     int _Length;
+    bool _IsEmpty;
 
 public:
     clsDynamicArray(int Length) // Constructor
     {
+        _IsEmpty = true;
         _Length = Length;
         ArrPtr = new T[Length]; // Dynamic Array
     };
 
     void SetItem(int Index, T Value) override
     {
+        _IsEmpty = false;
         *(ArrPtr + Index) = Value;
     };
 
     bool IsEmpty() override
     {
-        for (int i = 0; i < this->_Length; i++)
-        {
-            *(this->ArrPtr + i) ;
-        }
+        return this->IsEmpty;
     };
 
     int ArraySize() override
@@ -44,7 +44,7 @@ public:
     {
         for (int i = 0; i < this->_Length; i++)
         {
-            cout << *(this->ArrPtr + i) << " ";
+            std::cout << *(this->ArrPtr + i) << " ";
         }
     };
 };
