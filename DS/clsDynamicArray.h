@@ -26,8 +26,8 @@ public:
     T *ArrPtr = nullptr;            // Pointer To Allocate Memory
     clsDynamicArray(int Length = 0) // Constructor
     {
-          this->_Length = (0 > Length)? 0: Length ;  // negative nums
-        //this->_Length = Length;
+        this->_Length = (0 > Length) ? 0 : Length; // negative nums
+        // this->_Length = Length;
         ArrPtr = new T[Length]; // Dynamic Array
     };
 
@@ -219,7 +219,9 @@ public:
             return false;
         };
 
-        TempPtr = new T[_Length+1];
+        _Length++; // as i inserted new element so the length is bigger than old length
+
+        TempPtr = new T[_Length]; 
         // Copy All Elements Before Index
         for (int i = 0; i < Index; i++)
         {
@@ -234,7 +236,6 @@ public:
 
         delete[] ArrPtr;
         ArrPtr = TempPtr;
-        _Length++;
         return true;
     };
 
@@ -245,16 +246,17 @@ public:
 
     bool InsertAtTheEnd(T Value)
     {
-        if(_Length<1) 
+        if (_Length < 1)
         {
             return InsertAt(0, Value);
         };
-        //bool Res = 
-        // if (Res) // if the insertion done
-        // {
-        //     Swap(ArrPtr[_Length - 1], ArrPtr[_Length - 2]);
-        // };
-        return InsertAt(_Length , Value);;
+        // bool Res =
+        //  if (Res) // if the insertion done
+        //  {
+        //      Swap(ArrPtr[_Length - 1], ArrPtr[_Length - 2]);
+        //  };
+        return InsertAt(_Length, Value);
+        ;
     };
 
     bool InsertBefore(int Index, T Value)

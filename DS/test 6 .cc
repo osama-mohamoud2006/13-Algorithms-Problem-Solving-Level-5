@@ -15,6 +15,7 @@ int main()
     cout << "The Fist Element: " << Q.Front() << endl;
     cout << "The Last Element: " << Q.Back() << endl;
 
+    Q.Pop();
     cout<<"\nQueue Elements\n";
     Q.Print();
 }

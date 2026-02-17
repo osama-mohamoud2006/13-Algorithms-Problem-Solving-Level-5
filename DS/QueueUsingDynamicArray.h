@@ -15,6 +15,7 @@ public:
 template <class T>
 class clsQueue : public InterfaceQueue<T>
 {
+    //FIFO
     // This Class Is Just Adapter
     // Dynamic Array Is Just Underlying Container
 protected:
@@ -57,4 +58,8 @@ public:
     };
 
 
+    void Clear()
+    {
+        Underlying.Clear();
+    }
 };
