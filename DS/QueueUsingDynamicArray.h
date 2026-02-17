@@ -18,7 +18,7 @@ class clsQueue : public InterfaceQueue<T>
     // This Class Is Just Adapter
     // Dynamic Array Is Just Underlying Container
 protected:
-    clsDynamicArray<T> Underlying;
+    clsDynamicArray<T> Underlying =clsDynamicArray<T>(1) ;
 
 public:
     void Push(T Value) override
@@ -38,12 +38,13 @@ public:
 
     T Back() override // Last Element
     {
-        Underlying.GetItem(ArraySize() - 1);
+        int index = Underlying.ArraySize();
+        return Underlying.GetItem(index-1 );
     };
 
     T Front() override // First Element
     {
-        Underlying.GetItem(0);
+        return Underlying.GetItem(0);
     };
 
     int Size() override
@@ -52,5 +53,8 @@ public:
     };
 
     bool Empty(){
-        return Underlying.IsEmpty() ';'}
+        return Underlying.IsEmpty() ;
+    };
+
+
 };

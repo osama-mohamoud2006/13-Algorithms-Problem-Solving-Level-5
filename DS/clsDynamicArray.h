@@ -1,4 +1,4 @@
-
+#include <iostream>
 template <class T>
 class InterfaceclsDynamicArray
 {
@@ -56,7 +56,7 @@ public:
     {
         for (int i = 0; i < this->_Length; i++)
         {
-            std::cout << *(this->ArrPtr + i) << " ";
+            std::cout << this->ArrPtr[i] << " ";
         }
     };
 
@@ -102,10 +102,12 @@ public:
 
     T GetItem(int index) override
     {
-        if (0 > index)
+        if (0 > index || _Length <= index)
+        {
             return T();
-
-        return ArrPtr[index];
+        }
+        else
+            return ArrPtr[index];
     };
 
     void Clear() override
@@ -214,12 +216,12 @@ public:
 
     bool InsertAt(int Index, T Value)
     {
-        if (!CheckIndex(Index))
+        if (Index < 0 || Index > _Length)
         {
             return false;
         };
 
-        TempPtr = new T[_Length];
+        TempPtr = new T[_Length+1];
         // Copy All Elements Before Index
         for (int i = 0; i < Index; i++)
         {
@@ -245,13 +247,16 @@ public:
 
     bool InsertAtTheEnd(T Value)
     {
-        bool Res = InsertAt(_Length - 1, Value);
-        if (Res) // if the insertion done
+        if(_Length<1) 
         {
-            Swap(ArrPtr[_Length - 1], ArrPtr[_Length - 2]);
+            return InsertAt(0, Value);
         };
-
-        return Res;
+        //bool Res = 
+        // if (Res) // if the insertion done
+        // {
+        //     Swap(ArrPtr[_Length - 1], ArrPtr[_Length - 2]);
+        // };
+        return InsertAt(_Length , Value);;
     };
 
     bool InsertBefore(int Index, T Value)
@@ -264,7 +269,6 @@ public:
         else
         {
             return InsertAt(Index - 1, Value);
-            
         };
     };
 
