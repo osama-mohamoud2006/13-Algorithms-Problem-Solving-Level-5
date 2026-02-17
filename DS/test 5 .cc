@@ -34,25 +34,32 @@ int main()
     // D.Clear();
     // D.PrintArrayItems();
 
-    D.DeleteItemAt(2);
-    cout << "\n";
+    // D.DeleteItemAt(2);
+    // cout << "\n";
+    // D.PrintArrayItems();
+
+    // cout << "\nDelete First Item\n";
+    // D.DeleteFirstItem();
+    // D.PrintArrayItems();
+
+    // cout << "\nDelete Last Item\n";
+    // D.DeleteLastItem();
+    // D.PrintArrayItems();
+
+    // int Index = D.Find(20);
+    // if (Index != -1)
+    // {
+    //     cout << "\nFound!\n";
+    // }
+
+    // cout << "\nAfter Deleting\n";
+    // cout<<D.DeleteItem(20)<<endl;
+    // D.PrintArrayItems();
+
+    cout << "\nBefore Inserting At Index[2]\n";
     D.PrintArrayItems();
 
-    cout << "\nDelete First Item\n";
-    D.DeleteFirstItem();
-    D.PrintArrayItems();
-
-    cout << "\nDelete Last Item\n";
-    D.DeleteLastItem();
-    D.PrintArrayItems();
-
-    int Index = D.Find(20);
-    if (Index != -1)
-    {
-        cout << "\nFound!\n";
-    }
-
-    cout << "\nAfter Deleting\n";
-    cout<<D.DeleteItem(20)<<endl;
+    cout << "\nAfter Inserting At Index[2]\n";
+    D.InsertAt(2, -11);
     D.PrintArrayItems();
 }

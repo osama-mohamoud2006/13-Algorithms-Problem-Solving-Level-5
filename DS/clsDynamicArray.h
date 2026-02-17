@@ -191,14 +191,36 @@ public:
 
     bool DeleteItem(T Element)
     {
-       int Index =Find(Element);
-       if(Index == -1)
-       {
-        return false;
-       };
+        int Index = Find(Element);
+        if (Index == -1)
+        {
+            return false;
+        };
 
         return DeleteItemAt(Index);
-        
+    };
+
+    void InsertAt(int Index, T Value)
+    {
+        if (Index > _Length || 0 > Index)
+            return;
+
+        // Copy All Elements Before Index
+        for (int i = 0; i < Index; i++)
+        {
+            TempPtr[i] = ArrPtr[i];
+        };
+        TempPtr[Index] = Value; // assign value in the index that you want to insert at
+
+        for(int i= Index+1; i<_Length+1; i++)
+        {
+            TempPtr[i] = ArrPtr[i-1];
+        };
+
+        delete [] ArrPtr;
+        ArrPtr=TempPtr;
+        _Length++;  
+    
     };
 
     ~clsDynamicArray()
