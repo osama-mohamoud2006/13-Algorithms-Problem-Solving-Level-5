@@ -129,6 +129,16 @@ public:
         };
     }
 
+private:
+    bool CheckIndex(int Index)
+    {
+        if (Index < 0 || Index >= _Length)
+            return false;
+        else
+            return true;
+    }
+
+public:
     bool DeleteItemAt(int Index) override
     {
         // if (Index >= _Length || 0>Index)
@@ -148,8 +158,10 @@ public:
         // ArrPtr = Temp;
         // _Length--;
 
-        if (Index < 0 || Index >= _Length)
+        if (!CheckIndex(Index))
+        {
             return false;
+        };
 
         _Length--; // decrement length as we delete an item
         T *Temp = new T[_Length];
@@ -200,11 +212,14 @@ public:
         return DeleteItemAt(Index);
     };
 
-    void InsertAt(int Index, T Value)
+    bool InsertAt(int Index, T Value)
     {
-        if (Index > _Length || 0 > Index)
-            return;
+        if (!CheckIndex(Index))
+        {
+            return false;
+        };
 
+        TempPtr = new T[_Length];
         // Copy All Elements Before Index
         for (int i = 0; i < Index; i++)
         {
@@ -212,15 +227,54 @@ public:
         };
         TempPtr[Index] = Value; // assign value in the index that you want to insert at
 
-        for(int i= Index+1; i<_Length+1; i++)
+        for (int i = Index + 1; i < _Length + 1; i++)
         {
-            TempPtr[i] = ArrPtr[i-1];
+            TempPtr[i] = ArrPtr[i - 1];
         };
 
-        delete [] ArrPtr;
-        ArrPtr=TempPtr;
-        _Length++;  
-    
+        delete[] ArrPtr;
+        ArrPtr = TempPtr;
+        _Length++;
+        return true;
+    };
+
+    bool InsertAtBeginning(T Value)
+    {
+        return InsertAt(0, Value);
+    };
+
+    bool InsertAtTheEnd(T Value)
+    {
+        bool Res = InsertAt(_Length - 1, Value);
+        if (Res) // if the insertion done
+        {
+            Swap(ArrPtr[_Length - 1], ArrPtr[_Length - 2]);
+        };
+
+        return Res;
+    };
+
+    bool InsertBefore(int Index, T Value)
+    {
+        if (Index < 1) // to avoid inserting at -index
+        {
+            return InsertAt(0, Value);
+        }
+
+        else
+        {
+            return InsertAt(Index - 1, Value);
+            
+        };
+    };
+
+    bool InsertAfter(int Index, T Value)
+    {
+        if (Index >= _Length) // if we inserted element that larger than size then insert at the end instead
+            return InsertAt(_Length - 1, Value);
+
+        else
+            return InsertAt(Index + 1, Value);
     };
 
     ~clsDynamicArray()

@@ -62,4 +62,20 @@ int main()
     cout << "\nAfter Inserting At Index[2]\n";
     D.InsertAt(2, -11);
     D.PrintArrayItems();
+
+    cout << "\nInsert At The Start\n";
+    D.InsertAtBeginning(-90);
+    D.PrintArrayItems();
+
+    cout << "\nInsert At The End\n";
+    D.InsertAtTheEnd(1200);
+    D.PrintArrayItems();
+
+    cout << "\nInsert Before Index[2]\n";
+    D.InsertBefore(2, 18);
+    D.PrintArrayItems();
+
+    cout << "\nInsert After[2]\n";
+    D.InsertAfter(2, 90);
+    D.PrintArrayItems();
 }
