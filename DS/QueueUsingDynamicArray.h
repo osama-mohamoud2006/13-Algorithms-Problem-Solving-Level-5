@@ -18,7 +18,7 @@ class clsQueue : public InterfaceQueue<T>
     // This Class Is Just Adapter
     // Dynamic Array Is Just Underlying Container
 protected:
-    clsDynamicArray<T> Underlying =clsDynamicArray<T>(1) ;
+    clsDynamicArray<T> Underlying =clsDynamicArray<T>(0) ;
 
 public:
     void Push(T Value) override

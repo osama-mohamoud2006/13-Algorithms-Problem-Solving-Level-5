@@ -26,10 +26,8 @@ public:
     T *ArrPtr = nullptr;            // Pointer To Allocate Memory
     clsDynamicArray(int Length = 0) // Constructor
     {
-        if (0 > Length) // negative nums
-            this->_Length = 0;
-
-        this->_Length = Length;
+          this->_Length = (0 > Length)? 0: Length ;  // negative nums
+        //this->_Length = Length;
         ArrPtr = new T[Length]; // Dynamic Array
     };
 
