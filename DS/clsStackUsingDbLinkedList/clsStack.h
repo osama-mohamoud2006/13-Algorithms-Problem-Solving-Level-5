@@ -1,4 +1,4 @@
-#include "../DS/clsQueue.h"
+#include "../clsQueueUsingDbLinkedList/clsQueue.h"
 
 template <class T>
 

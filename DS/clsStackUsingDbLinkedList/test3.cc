@@ -1,4 +1,4 @@
-#include "../DS/clsStack.h"
+#include "clsStack.h"
 #include <iostream>
 #include <stack>
 using namespace std;

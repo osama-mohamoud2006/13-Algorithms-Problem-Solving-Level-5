@@ -1,4 +1,4 @@
-#include "../DS/QueueUsingDynamicArray.h"
+#include "../clsQueueUsingDynamicArray/QueueUsingDynamicArray.h"
 
 template <class T>
 class clsStack : public clsQueue<T>
@@ -22,6 +22,6 @@ public:
 
     T Top()
     {
-        return clsQueue<T>::Underlying.GetItem(0);
+        return  clsQueue<T>::Front();
     };
 };

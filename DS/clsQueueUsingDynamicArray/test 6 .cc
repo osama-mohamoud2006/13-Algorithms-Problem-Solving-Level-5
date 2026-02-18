@@ -1,4 +1,4 @@
-#include "../DS/QueueUsingDynamicArray.h"
+#include "QueueUsingDynamicArray.h"
 #include <iostream>
 using namespace std;
 

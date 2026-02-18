@@ -1,4 +1,4 @@
-#include "../DS/clsQueue.h"
+#include "clsQueue.h"
 #include <iostream>
 using namespace std;
 

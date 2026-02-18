@@ -1,4 +1,4 @@
-#include "../DS/clsDynamicArray.h"
+#include "../clsDynamicArray/clsDynamicArray.h"
 
 template <class T>
 class InterfaceQueue

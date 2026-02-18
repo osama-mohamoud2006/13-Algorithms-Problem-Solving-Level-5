@@ -1,4 +1,4 @@
-#include "../DS/clsDbLinkedList.h"
+#include "../clsDbLinkedList/clsDbLinkedList.h"
 
 template <class T>
 class InterfaceQueue
