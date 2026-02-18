@@ -54,9 +54,10 @@ public:
     {
         if (ReStack.empty())
         {
+            str=" ";
             return;
         };
-        
+
         Stack.push(ReStack.top());
         str = ReStack.top();
         ReStack.pop(); // remove the last element as it returned to another stack

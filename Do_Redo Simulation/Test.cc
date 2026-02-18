@@ -40,5 +40,29 @@ int main()
 
     S.Redo();
 
-    cout << " Value: " << S.GetValue() << endl; //2 
+    cout << " Value: " << S.GetValue() << endl; // 2
+
+    S.Redo();
+
+    cout << " Value: " << S.GetValue() << endl; // 3
+
+    S.Redo();
+
+    cout << " Value: " << S.GetValue() << endl; // 4
+
+    S.Redo();
+
+    cout << " Value: " << S.GetValue() << endl; // garbage
+
+    
+    S.Redo();
+
+    cout << " Value: " << S.GetValue() << endl; // garbage
+    
+    S.Redo();
+
+    cout << " Value: " << S.GetValue() << endl; // garbage
+    S.Redo();
+
+    cout << " Value: " << S.GetValue() << endl; // garbage
 };
