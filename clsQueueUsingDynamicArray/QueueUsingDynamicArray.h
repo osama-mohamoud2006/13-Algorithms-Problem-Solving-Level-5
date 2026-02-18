@@ -1,3 +1,4 @@
+#pragma once
 #include "../clsDynamicArray/clsDynamicArray.h"
 
 template <class T>

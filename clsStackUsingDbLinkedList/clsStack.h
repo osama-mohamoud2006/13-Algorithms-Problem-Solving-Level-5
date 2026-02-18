@@ -1,3 +1,4 @@
+#pragma once
 #include "../clsQueueUsingDbLinkedList/clsQueue.h"
 
 template <class T>

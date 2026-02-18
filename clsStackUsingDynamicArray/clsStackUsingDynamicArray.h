@@ -1,3 +1,4 @@
+#pragma once
 #include "../clsQueueUsingDynamicArray/QueueUsingDynamicArray.h"
 
 template <class T>

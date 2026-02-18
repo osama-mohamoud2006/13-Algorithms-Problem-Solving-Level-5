@@ -1,5 +1,5 @@
+#pragma once
 #include <stack>
-#include <string>
 
 class Interface
 {
@@ -8,46 +8,41 @@ public:
     virtual void Undo() = 0;
 };
 
+template <class T>
 class ActiveCallStackSimulation : public Interface
 {
 private:
-    std::stack<std::string> _UndoStack;
-    std::stack<std::string> _ReDoStack;
-    std::string _Value;
+    std::stack<T> _UndoStack;
+    std::stack<T> _ReDoStack;
+    T _Value;
 
 public:
     ActiveCallStackSimulation()
     {
         this->_Value = " ";
-        _UndoStack.push(" ");
     };
 
     // Set
-    void SetValue(std::string Value)
+    void SetValue(T Value)
     {
-        if (Value == "")
-        {
-            return;
-        };
-        _UndoStack.push(_Value);
+        _UndoStack.push(_Value); // take the old value at first 
         this->_Value = Value;
     };
 
     // Get
 
-    std::string GetValue() const
+    T GetValue() const
     {
         return this->_Value;
     };
 
-    void Undo() override
+    void Undo() override   
     {
         if (!_UndoStack.empty())
         {
             _ReDoStack.push(_Value); // push the element to another stack before removing it
-            this->_Value = _UndoStack.top();
-            _UndoStack.pop();             // remove the last action
-            
+            this->_Value = _UndoStack.top(); // as stack have the prev value 
+            _UndoStack.pop(); // remove the last action
         };
     };
 
@@ -58,6 +53,10 @@ public:
             _UndoStack.push(_ReDoStack.top());
             _Value = _ReDoStack.top();
             _ReDoStack.pop(); // remove the last element as it returned to another stack
-        };
+        }
+        else
+        {
+            this->_Value = T();
+        }
     };
 };

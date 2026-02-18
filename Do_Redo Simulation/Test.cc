@@ -1,10 +1,11 @@
 #include "../Do_Redo Simulation/SimulationClass.h"
 #include <iostream>
+#include <string>
 using namespace std;
 
 int main()
 {
-    ActiveCallStackSimulation S;
+    ActiveCallStackSimulation<string> S;
     cout << "First Value: " << S.GetValue() << endl;
 
     S.SetValue("Hamed");
@@ -21,7 +22,7 @@ int main()
 
 
 
-    
+
     cout << "\n\n\nAfter Undoing\n";
 
     S.Undo();
