@@ -1,9 +1,44 @@
 #include "../Do_Redo Simulation/SimulationClass.h"
 #include <iostream>
-using namespace std; 
-
+using namespace std;
 
 int main()
 {
+    ActiveCallStackSimulation S;
+    cout << "First Value: " << S.GetValue() << endl;
 
+    S.SetValue("Hamed");
+    cout << "Second Value: " << S.GetValue() << endl;
+
+    S.SetValue("Mai");
+    cout << "Third Value: " << S.GetValue() << endl;
+
+    S.SetValue("Lana");
+    cout << "Forth Value: " << S.GetValue() << endl;
+
+    S.SetValue("Jana");
+    cout << "Fifth Value: " << S.GetValue() << endl;
+
+    cout << "\n\n\nAfter Undoing\n";
+
+    S.Undo();
+    cout << "First Value: " << S.GetValue() << endl;
+
+    S.Undo();
+    cout << "Second Value: " << S.GetValue() << endl;
+
+    S.Undo();
+    cout << "Third Value: " << S.GetValue() << endl;
+
+    S.Undo();
+    cout << "Forth Value: " << S.GetValue() << endl;
+
+    cout << "\nRedo\n";
+    S.Redo();
+
+    cout << " Value: " << S.GetValue() << endl; // 1
+
+    S.Redo();
+
+    cout << " Value: " << S.GetValue() << endl; //2 
 };
