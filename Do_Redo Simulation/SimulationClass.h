@@ -11,55 +11,53 @@ public:
 class ActiveCallStackSimulation : public Interface
 {
 private:
-    std::stack<std::string> Stack;
-    std::stack<std::string> ReStack;
-    std::string str;
+    std::stack<std::string> _UndoStack;
+    std::stack<std::string> _ReDoStack;
+    std::string _Value;
 
 public:
     ActiveCallStackSimulation()
     {
-        this->str = " ";
-        Stack.push(" ");
+        this->_Value = " ";
+        _UndoStack.push(" ");
     };
 
     // Set
     void SetValue(std::string Value)
     {
         if (Value == "")
+        {
             return;
-        this->str = Value;
-        Stack.push(Value);
+        };
+        _UndoStack.push(_Value);
+        this->_Value = Value;
     };
 
     // Get
 
     std::string GetValue() const
     {
-        return this->str;
+        return this->_Value;
     };
 
     void Undo() override
     {
-        if (Stack.empty() || this->str == "")
+        if (!_UndoStack.empty())
         {
-            this->str = "";
-            return;
+            _ReDoStack.push(_Value); // push the element to another stack before removing it
+            this->_Value = _UndoStack.top();
+            _UndoStack.pop();             // remove the last action
+            
         };
-        ReStack.push(str); // push the element to another stack before removing it
-        Stack.pop();       // remove the last action
-        this->str = Stack.top();
     };
 
     void Redo() override
     {
-        if (ReStack.empty())
+        if (!_ReDoStack.empty())
         {
-            str=" ";
-            return;
+            _UndoStack.push(_ReDoStack.top());
+            _Value = _ReDoStack.top();
+            _ReDoStack.pop(); // remove the last element as it returned to another stack
         };
-
-        Stack.push(ReStack.top());
-        str = ReStack.top();
-        ReStack.pop(); // remove the last element as it returned to another stack
     };
 };

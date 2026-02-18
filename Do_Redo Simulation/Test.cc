@@ -19,6 +19,9 @@ int main()
     S.SetValue("Jana");
     cout << "Fifth Value: " << S.GetValue() << endl;
 
+
+
+    
     cout << "\n\n\nAfter Undoing\n";
 
     S.Undo();
@@ -32,6 +35,12 @@ int main()
 
     S.Undo();
     cout << "Forth Value: " << S.GetValue() << endl;
+
+
+
+
+
+
 
     cout << "\nRedo\n";
     S.Redo();
