@@ -1,0 +1,17 @@
+#include "../DS/QueueUsingDynamicArray.h"
+
+template <class T>
+class clsStack : public clsQueue<T>
+{
+    // LIFO
+    // I Inherited The Queue As It Is Very Similar To Stack And I Will Override Main Methods
+    // To Be LIFO paradigm 
+    // This Class Is Adapter 
+    // Dynamic Array Is The Underlying Container 
+    
+public:
+    Push(T Value) override
+    {
+        cout << "\nTest\n";
+    };
+};
