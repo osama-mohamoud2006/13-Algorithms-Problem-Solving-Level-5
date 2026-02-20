@@ -15,13 +15,12 @@ public:
 class clsQueueLine : public InterfaceQueueLine
 {
 private:
-    // FIFO
     std::string Perfix;
     int ExpectedTime;
     int TotalTickets;
     int ServedClients;
     int WaitingClients;
-    int NumOfClient ;
+    int NumOfClient;
 
 public:
     clsQueueLine(std::string Perfix, int ExpectedTime) // constructor
@@ -35,31 +34,30 @@ public:
     };
 
 private:
-
     class clsTicket
     {
 
         std::string TimeDate;
-        int NumOfClient ; 
+        std::string ClientId;
 
     public:
-        clsTicket(int NumOfClient)
+        clsTicket(int NumOfClient , std::string Perfix)
         {
             TimeDate = clsDate::GetLocalDateAndTime();
-            this->NumOfClient = NumOfClient;
+            ClientId= Perfix+std::to_string(NumOfClient);
         };
     };
 
-
-    std::queue<clsTicket> Line;
+    std::queue<clsTicket> Line; // FIFO
 
 public:
     void IssueTicket() override
     {
-        TotalTickets++;
+        TotalTickets++; // as new client issued a ticket
         WaitingClients++;
         NumOfClient++;
-        clsTicket NewTicket(NumOfClient);
+        clsTicket NewTicket(NumOfClient,this->Perfix); // ticket info object includes time and client id
+
         Line.push(NewTicket);
     };
 };
