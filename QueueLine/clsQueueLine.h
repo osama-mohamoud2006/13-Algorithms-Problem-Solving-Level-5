@@ -161,7 +161,7 @@ public:
     void PrintAllTickets() override
     {
         std::queue<clsTicket> TempLine = this->QueueOfLine;
-        std::cout << "\n\t\t\t\t\t        Tickets\n";
+        std::cout << "\n\t\t\t\t\t      Tickets\n";
         std::cout << "\t\t\t\t_____________________________\n";
 
         while (!TempLine.empty())
