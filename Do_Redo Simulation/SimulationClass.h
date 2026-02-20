@@ -19,7 +19,7 @@ private:
 public:
     ActiveCallStackSimulation()
     {
-        this->_Value = " ";
+        this->_Value = T();
     };
 
     // Set
