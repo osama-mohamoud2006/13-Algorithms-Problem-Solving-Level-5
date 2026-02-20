@@ -153,8 +153,8 @@ private:
         std::cout << "\t\t\t\t\t" << Client.GetDateTimeDetails() << "\n";
 
         static int WClient = 0;
-        std::cout << "\t\t\t\t\t" << "Waiting Clients= " << WClient++ << "\n";
-        std::cout << "\t\t\t\t\t" << "Serve Time In: " << WClient * ExpectedTime << std::endl;
+        std::cout << "\t\t\t\t\t" << "Waiting Clients= " << WClient << "\n";
+        std::cout << "\t\t\t\t\t" << "Serve Time In: " << WClient++ * ExpectedTime << std::endl;
     };
 
 public:
@@ -181,4 +181,6 @@ public:
             this->QueueOfLine.pop();
         };
     };
+
+
 };
