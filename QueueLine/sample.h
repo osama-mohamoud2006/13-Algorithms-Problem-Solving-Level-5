@@ -69,7 +69,7 @@ private:
             cout << "\n\t\t\t  _______________________\n";
             cout << "\n\t\t\t\t    " << FullNumber();
             cout << "\n\n\t\t\t    " << _TicketTime;
-            cout << "\n\t\t\t    Wating Clients = " << _WaitingClients;
+            cout << "\n\t\t\t    waiting Clients = " << _WaitingClients;
             cout << "\n\t\t\t      Serve Time In";
             cout << "\n\t\t\t       " << ExpectedServeTime() << " Minutes.";
             cout << "\n\t\t\t  _______________________\n";
@@ -88,6 +88,7 @@ public:
 
     void IssueTicket()
     {
+        // clsTicket(string Prefix, short Number, short WaitingClients, short AverageServeTime)
         _TotalTickets++;
         clsTicket Ticket(_Prefix, _TotalTickets, WaitingClients(), _AverageServeTime);
         QueueLine.push(Ticket);
@@ -129,7 +130,7 @@ public:
         cout << "\n\t\t\t    Prefix   = " << _Prefix;
         cout << "\n\t\t\t    Total Tickets   = " << _TotalTickets;
         cout << "\n\t\t\t    Served Clients  = " << ServedClients();
-        cout << "\n\t\t\t    Wating Clients  = " << WaitingClients();
+        cout << "\n\t\t\t    waiting Clients  = " << WaitingClients();
         ;
         cout << "\n\t\t\t _________________________\n";
         cout << "\n";
@@ -203,4 +204,7 @@ public:
             TempQueueLine.pop();
         }
     }
+
+
+
 };

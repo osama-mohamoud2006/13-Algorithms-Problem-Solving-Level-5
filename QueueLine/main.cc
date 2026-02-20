@@ -21,10 +21,10 @@ int main()
     cout << "\n\n";
     ServiceQueue.PrintAllTickets();
 
-    ServiceQueue.ServeNextClient(); 
-     cout << "\n\t\t\t\t\tService Queue Info\n";
+    ServiceQueue.ServeNextClient();
+    cout << "\n\t\t\t\t\tService Queue Info\n";
     ServiceQueue.PrintInfo();
 
-      cout << "\n\n\n";
+    cout << "\n\n\n";
     ServiceQueue.PrintAllTickets();
 };

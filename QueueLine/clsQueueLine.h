@@ -6,7 +6,7 @@ class InterfaceQueueLine
 {
 public:
     virtual void IssueTicket() = 0;
-    virtual void ServeNextClient() = 0;
+    virtual bool ServeNextClient() = 0;
     virtual void PrintTicketsLineRtl() = 0;
     virtual void PrintTicketsLineLtr() = 0;
     virtual void PrintInfo() = 0;
@@ -16,32 +16,29 @@ public:
 class clsQueueLine : public InterfaceQueueLine
 {
 private:
-    std::string Perfix;
-    int ExpectedTime;
-    int TotalTickets;
-    int ServedClients;
-    int WaitingClients;
-    int NumOfClientForId;
+    std::string _Perfix;
+    int _ExpectedTimeForServingEachClient;
+    int _TotalTickets;
 
 public:
     clsQueueLine(std::string Perfix, int ExpectedTime) // constructor
     {
-        this->WaitingClients = 0;
-        this->TotalTickets = 0;
-        this->ServedClients = 0;
-        this->NumOfClientForId = 0;
+        this->_Perfix = Perfix;
+        this->_TotalTickets = 0;
 
-        this->Perfix = Perfix;
-        this->ExpectedTime = ExpectedTime;
+        this->_ExpectedTimeForServingEachClient = ExpectedTime;
     };
 
 private:
     class clsTicket
     {
+        short _Number = 0;
+        std::string _Prefix;
+        std::string _TicketTime;
+        short _WaitingClients = 0;
+        short _AverageServeTime = 0;
 
-        std::string TimeDate;
-        std::string ClientId;
-        int NumOfClient;
+        /// short _ExpectedServeTime = 0;
 
     private:
         std::string GetLocalDateAndTime()
@@ -54,49 +51,83 @@ private:
         }
 
     public:
-        clsTicket(int NumOfClient, std::string Perfix)
+        clsTicket(std::string Prefix, int Num, int WaitingClient, short AverageServeTime)
         {
-            TimeDate = GetLocalDateAndTime();
-            this->NumOfClient = NumOfClient;
-            ClientId = Perfix + std::to_string(NumOfClient);
+            this->_Prefix = Prefix;
+            this->_Number = Num;
+            this->_WaitingClients = WaitingClient;
+            this->_AverageServeTime = AverageServeTime;
+            _TicketTime = GetLocalDateAndTime();
         };
 
-        std::string GetClientId() const
+        std::string GetClientId()
         {
-            return this->ClientId;
+            return this->_Prefix + std::to_string(_Number);
         };
 
         std::string GetDateTimeDetails() const
         {
-            return this->TimeDate;
+            return this->_TicketTime;
         };
+
+        void SetNewWaitingClient(int Num)
+        {
+            _WaitingClients = Num;
+        }
 
         int GetClientNum() const
         {
-            return NumOfClient;
+            return _Number;
         }
+
+        int ExpectedServeTime()
+        {
+            return this->_AverageServeTime * this->_WaitingClients;
+        };
+
+        void PrintSingleTicket()
+        {
+            std::cout << "\t\t\t\t\t\t" << GetClientId() << "\n";
+            std::cout << "\t\t\t\t\t" << GetDateTimeDetails() << "\n";
+            std::cout << "\t\t\t\t\t" << "Waiting Clients= " << _WaitingClients << "\n";
+            std::cout << "\t\t\t\t\t" << "Serve Time In: " << ExpectedServeTime() << std::endl;
+        };
     };
 
     std::queue<clsTicket> QueueOfLine; // FIFO
 
 public:
+    int QueueLineSize()
+    {
+        return QueueOfLine.size();
+    }
+
     void IssueTicket() override
     {
-        TotalTickets++; // as new client issued a ticket
-        WaitingClients++;
-        NumOfClientForId++;
-        clsTicket NewTicket(NumOfClientForId, this->Perfix); // ticket info object includes time and client id
+        _TotalTickets++; // as new client issued a ticket
 
-        QueueOfLine.push(NewTicket);
+        clsTicket Ticket(this->_Perfix, _TotalTickets, WaitingClients(), _ExpectedTimeForServingEachClient); // ticket info object includes time and client id
+
+        QueueOfLine.push(Ticket);
     };
+
+    int WaitingClients()
+    {
+        return QueueOfLine.size();
+    }
+
+    int ServedClients()
+    {
+        return this->_TotalTickets - WaitingClients();
+    }
 
     void PrintInfo() override
     {
         std::cout << "\t\t\t\t\t___________________________\n";
-        std::cout << "Perfix: " << this->Perfix << std::endl;
-        std::cout << "Total Tickets: " << this->TotalTickets << std::endl;
-        std::cout << "Served Clients: " << this->ServedClients << std::endl;
-        std::cout << "Waiting Clients: " << this->WaitingClients << std::endl;
+        std::cout << "Perfix: " << this->_Perfix << std::endl;
+        std::cout << "Total Tickets: " << this->_TotalTickets << std::endl;
+        std::cout << "Served Clients: " << this->ServedClients() << std::endl;
+        std::cout << "Waiting Clients: " << this->WaitingClients() << std::endl;
         std::cout << "\t\t\t\t\t___________________________\n";
     };
 
@@ -146,18 +177,6 @@ public:
         std::cout << strLine << std::endl;
     };
 
-private:
-    void PrintSingleTicket(clsTicket Client)
-    {
-        std::cout << "\t\t\t\t\t\t" << Client.GetClientId() << "\n";
-        std::cout << "\t\t\t\t\t" << Client.GetDateTimeDetails() << "\n";
-
-        static int WClient = 0;
-        std::cout << "\t\t\t\t\t" << "Waiting Clients= " << WClient << "\n";
-        std::cout << "\t\t\t\t\t" << "Serve Time In: " << WClient++ * ExpectedTime << std::endl;
-    };
-
-public:
     void PrintAllTickets() override
     {
         std::queue<clsTicket> TempLine = this->QueueOfLine;
@@ -166,20 +185,34 @@ public:
 
         while (!TempLine.empty())
         {
-            PrintSingleTicket(TempLine.front());
+            TempLine.front().PrintSingleTicket();
             std::cout << "\t\t\t\t_____________________________\n";
             TempLine.pop();
         };
     };
 
-    void ServeNextClient() override
+    bool ServeNextClient() override
     {
-        if (!QueueOfLine.empty())
+        if (QueueOfLine.empty())
         {
-            this->WaitingClients--;
-            this->ServedClients++;
-            this->QueueOfLine.pop();
+            return false;
+        }
+        else
+        {
+            QueueOfLine.pop();
+
+            return true;
         };
+    };
+
+    string WhoIsNext()
+    {
+        if (!this->QueueOfLine.empty())
+        {
+            return QueueOfLine.front().GetClientId();
+        }
+        else
+            return "";
     };
 
 
