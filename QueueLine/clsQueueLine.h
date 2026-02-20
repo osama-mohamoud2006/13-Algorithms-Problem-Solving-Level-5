@@ -1,5 +1,6 @@
 #include <queue>
-#include<string>
+#include "../10-OOP Concepts/Project 3/clsDate.h"
+#include <string>
 class InterfaceQueueLine
 {
 public:
@@ -11,20 +12,31 @@ public:
     virtual void PrintAllTickets() = 0;
 };
 
-
 class clsQueueLine : public InterfaceQueueLine
 {
-     private:
-     std::string Perfix ;
-     int ExpectedTime ;
+private:
+    std::string Perfix;
+    int ExpectedTime;
+    int TotalTickets ; 
+    int ServedClients ;
+    int WaitingClients;
 
-     public:
-     clsQueueLine(std::string Perfix , int ExpectedTime) // constructor 
-     {
+public:
+    clsQueueLine(std::string Perfix, int ExpectedTime) // constructor
+    {
         this->Perfix = Perfix;
-        this->ExpectedTime = ExpectedTime ;
-     };
+        this->ExpectedTime = ExpectedTime;
+    };
 
+    class clsTicket
+    {
+    private:
+        std::string TimeDate;
+        
+        clsTicket()
+        {
 
+        }
 
+    };
 };
