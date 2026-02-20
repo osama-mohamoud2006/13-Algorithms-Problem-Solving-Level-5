@@ -1,6 +1,6 @@
+#pragma once
 #include <queue>
 #include <stack>
-#include "../10-OOP Concepts/Project 3/clsDate.h"
 #include <string>
 class InterfaceQueueLine
 {
@@ -29,6 +29,7 @@ public:
         this->WaitingClients = 0;
         this->TotalTickets = 0;
         this->ServedClients = 0;
+        this->NumOfClientForId = 0;
 
         this->Perfix = Perfix;
         this->ExpectedTime = ExpectedTime;
@@ -40,23 +41,40 @@ private:
 
         std::string TimeDate;
         std::string ClientId;
+        int NumOfClient;
+
+    private:
+        std::string GetLocalDateAndTime()
+        {
+            time_t epoch_time = time(0);
+            tm *date_now = localtime(&epoch_time);
+            std::string time = std::to_string(date_now->tm_hour) + ":" + std::to_string(date_now->tm_min) + ":" + std::to_string(date_now->tm_sec);
+            //  d/m/y + time
+            return (std::to_string(date_now->tm_mday) + "/" + std::to_string((date_now->tm_mon) + 1) + "/" + std::to_string((date_now->tm_year) + 1900) + " - " + time);
+        }
 
     public:
         clsTicket(int NumOfClient, std::string Perfix)
         {
-            TimeDate = clsDate::GetLocalDateAndTime();
+            TimeDate = GetLocalDateAndTime();
+            this->NumOfClient = NumOfClient;
             ClientId = Perfix + std::to_string(NumOfClient);
         };
 
-        std::string GetClientId()
+        std::string GetClientId() const
         {
             return this->ClientId;
         };
 
-        std::string GetDateTimeDetails()
+        std::string GetDateTimeDetails() const
         {
             return this->TimeDate;
         };
+
+        int GetClientNum() const
+        {
+            return NumOfClient;
+        }
     };
 
     std::queue<clsTicket> QueueOfLine; // FIFO
@@ -86,12 +104,17 @@ public:
     {
         std::queue<clsTicket> TempLine = this->QueueOfLine;
         std::string strLine = "";
+        std::string Arrow = "--->  ";
         while (!TempLine.empty())
         {
-            strLine += TempLine.front().GetClientId() + "<---  "; // get client that that will be served at first  id form queue object
+            strLine += TempLine.front().GetClientId() + Arrow; // get client that that will be served at first  id form queue object
             TempLine.pop();
         };
-        strLine.pop_back(); // to remove the last "<---"
+
+        if (strLine != "")
+        {
+            strLine = strLine.substr(0, strLine.length() - Arrow.length()); // to remove the last "<---"
+        };
         std::cout << strLine << std::endl;
     };
 
@@ -100,6 +123,7 @@ public:
         std::queue<clsTicket> TempLine = this->QueueOfLine;
         std::stack<clsTicket> TempStack; // to reverse queue
         std::string strLine = "";
+        std::string Arrow = "<---  ";
 
         // Reverse Queue
         while (!TempLine.empty())
@@ -114,7 +138,11 @@ public:
             TempStack.pop();
         };
 
-        strLine.pop_back(); // to remove the last "<---"
+        if (strLine != "") // to remove the last "<---"
+        {
+            strLine = strLine.substr(0, strLine.length() - Arrow.length()); // to remove the last "<---"
+        };
+
         std::cout << strLine << std::endl;
     };
 
@@ -123,15 +151,17 @@ private:
     {
         std::cout << "\t\t\t\t\t\t" << Client.GetClientId() << "\n";
         std::cout << "\t\t\t\t\t" << Client.GetDateTimeDetails() << "\n";
-        std::cout << "Waiting Clients= " << this->WaitingClients << "\n";
-        std::cout << "Serve Time In: " << WaitingClients * ExpectedTime << std::endl;
+
+        static int WClient = 0;
+        std::cout << "\t\t\t\t\t" << "Waiting Clients= " << WClient++ << "\n";
+        std::cout << "\t\t\t\t\t" << "Serve Time In: " << WClient * ExpectedTime << std::endl;
     };
 
 public:
     void PrintAllTickets() override
     {
         std::queue<clsTicket> TempLine = this->QueueOfLine;
-        std::cout << "\n\t\t\t\t\tTickets\n";
+        std::cout << "\n\t\t\t\t\t        Tickets\n";
         std::cout << "\t\t\t\t_____________________________\n";
 
         while (!TempLine.empty())
@@ -144,11 +174,11 @@ public:
 
     void ServeNextClient() override
     {
-        this->WaitingClients--;
-        this->ServedClients++;
-        this->QueueOfLine.pop(); 
+        if (!QueueOfLine.empty())
+        {
+            this->WaitingClients--;
+            this->ServedClients++;
+            this->QueueOfLine.pop();
+        };
     };
-
-
-
 };
